@@ -25,17 +25,17 @@ function Navbar() {
     <>
       <nav className='navbar'>
 
-        <div className='navbar-container'>
+        <div className='navbar__container'>
 
-          <div className='navbar-row'>
+          <div className='navbar__row'>
 
-            <div className='navbar-brand'>
+            <div className='navbar__brand'>
 
-              <div className='navbar-brand-item'>
+              <div className='navbar__brand__item'>
 
-                <Link to="/" className='navbar-brand-link'>
+                <Link to="/" className='navbar__brand__link'>
                   
-                  <div className='navbar-brand-logo'>MERN</div>
+                  <div className='navbar__brand__logo'>BLOG APP</div>
                   
                 </Link>          
 
@@ -43,13 +43,13 @@ function Navbar() {
 
             </div>
 
-            <div className='navbar-desktop-menu'>
+            <div className='navbar__desktop__menu'>
 
               {user ? (
                 <>
-                  <div className='navbar-desktop-menu-item'>
+                  <div className='navbar__desktop__menu__item'>
                       
-                    <button onClick={onLogout} className='navbar-desktop-menu-link'>Logout</button>
+                    <button onClick={onLogout} className='navbar__desktop__menu__link'>Logout</button>
       
                   </div>
                 </>
@@ -57,9 +57,9 @@ function Navbar() {
                 <>
                   {GetData.map((data, index) => (
 
-                    <div key={data + index} className='navbar-desktop-menu-item'>
+                    <div key={data + index} className='navbar__desktop__menu__item'>
                       
-                      <Link to={data.url} className='navbar-desktop-menu-link'>{data.text}</Link>
+                      <Link to={data.url} className='navbar__desktop__menu__link'>{data.text}</Link>
 
                     </div>
 
@@ -68,7 +68,7 @@ function Navbar() {
               ) }
             </div>
 
-            <div className='navbar-mobile-menu'></div>
+            <div className='navbar__mobile__menu'></div>
 
           </div>
 

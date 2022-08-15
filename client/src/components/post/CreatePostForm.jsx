@@ -17,37 +17,37 @@ function CreatePostForm() {
   }
 
   return (
-    <section className="create-post">
+    <section className="create__post">
 
-          <div className="create-post-container">
+          <div className="create__post-container">
 
-               <div className="create-post-row">
+               <div className="create__post__row">
 
-                    <form className="create-post-form" onSubmit={formOnSubmit}>
+                    <form className="create__post__form" onSubmit={formOnSubmit}>
 
-                         <div className="create-post-form-heading">Create post</div>
+                         <div className="create__post__form__heading">Create post</div>
 
-                         <div className="create-post-form-wrapper">
+                         <div className="create__post__form__wrapper">
 
-                              <div className="create-post-form-item">
-                                   <div className="create-post-form-label"></div>
+                              <div className="create__post__form__item">
+                                   <div className="create__post__form__label"></div>
                                    <input type="text" name="title" 
-                                   className={`create-post-form-input`}
+                                   className={`create__post__form__input`}
                                    placeholder="Title"
                                    onChange={(e) => setTitle(e.target.value)} value={title} />
                               </div>
 
-                              <div className="create-post-form-item">
-                                   <div className="create-post-form-label"></div>
+                              <div className="create__post__form__item">
+                                   <div className="create__post__form__label"></div>
                                    <textarea rows={5}
-                                   className={`create-post-form-textarea`}
+                                   className={`create__post__form__textarea`}
                                    placeholder="What's on your mind?"
                                    onChange={(e) => setDescription(e.target.value)} value={description}
                                    >{description}</textarea>
                               </div>
 
-                              <div className="create-post-form-item">
-                                   <button className="create-post-form-button">Post</button>
+                              <div className="create__post__form__item">
+                                   <button className="create__post__form__button">Post</button>
                               </div>
 
                          </div>

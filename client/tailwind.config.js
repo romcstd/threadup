@@ -21,6 +21,8 @@ module.exports = {
         '2xl': '1536px',
       },
       colors: {
+        white: '#ffffff',
+        dark: '#222222',
         primary: '#0c5adb',
         primaryHover: '#1140c6',
         secondary: '#0c5adb',

@@ -55,28 +55,28 @@ function Login() {
   return (
     <>
       <section className='login'>
-        <div className='login-container'>
-          <div className='login-row'>
-            <form className='login-form' onSubmit={formOnSubmit}>
-              <div className='login-form-heading'>Login your account</div>
-              <div className='login-form-subheading'>Please login your credentials to continue.</div>   
-              <div className='login-form-wrapper'>
-                <div className='login-form-item'>
-                     <div className='login-form-label'></div>
-                     <input type="text" name="email" className={`login-form-input`}
+        <div className='login__container'>
+          <div className='login__row'>
+            <form className='login__form' onSubmit={formOnSubmit}>
+              <div className='login__form__heading'>Login your account</div>
+              <div className='login__form__subheading'>Please login your credentials to continue.</div>   
+              <div className='login__form__wrapper'>
+                <div className='login__form__item'>
+                     <div className='login__form__label'></div>
+                     <input type="text" name="email" className={`login__form__input`}
                      placeholder="Email" value={email}
                      onChange={formOnChange}
                      />
                 </div>
-                <div className='login-form-item'>
-                     <div className='login-form-label'></div>
-                     <input type="password" name="password" className={`login-form-input`}
+                <div className='login__form__item'>
+                     <div className='login__form__label'></div>
+                     <input type="password" name="password" className={`login__form__input`}
                      placeholder="Password" value={password}
                      onChange={formOnChange}
                      />
                 </div>
-                <div className="login-form-item">
-                     <button className="login-form-button">Login</button>
+                <div className="login__form__item">
+                     <button className="login__form__button">Login</button>
                 </div>   
               </div>
             </form>

@@ -50,122 +50,135 @@
      /* --------------- Navbar -------------------- */
 
      .navbar {
-          @apply bg-secondary border-gray-200;
+          @apply bg-white border-gray-200;
      }
 
-     .navbar-container {
+     .navbar__container {
           @apply max-w-7xl mx-auto;
      }
 
-     .navbar-row {
+     .navbar__row {
           @apply p-4 lg:px-4 flex flex-wrap justify-between items-center;
      }
 
-     .navbar-brand-link {
-          @apply text-white;
+     .navbar__brand__link {
+          @apply text-dark;
      }
 
-     .navbar-brand-logo {
-          @apply text-white text-xl font-semibold whitespace-nowrap;
+     .navbar__brand__logo {
+          @apply text-dark text-xl font-semibold whitespace-nowrap;
      }
 
-     .navbar-desktop-menu {
+     .navbar__desktop__menu {
           @apply ml-auto flex;
      }
 
-     .navbar-desktop-menu-item {
+     .navbar__desktop__menu__item {
           @apply ml-8;
      }
 
-     .navbar-desktop-menu-link {
-          @apply text-white text-sm font-semibold;
+     .navbar__desktop__menu__link {
+          @apply text-dark text-sm font-semibold;
      }
 
-     /* --------------- Get User -------------------- */
+     /* --------------- Home Banner -------------------- */
+     .home__banner {
+          @apply relative h-[600px];
+     }
 
-     .get-post {
+     .home__banner__container {
+          @apply h-full;
+     }
+
+     .home__banner__row {
+          @apply h-full flex items-center justify-center;
+     }
+
+     /* --------------- Get Post -------------------- */
+
+     .get__post {
           @apply py-16;
      }
 
-     .get-post-container {
+     .get__post__container {
           @apply max-w-7xl mx-auto;
      }
 
-     .get-post-row {
+     .get__post__row {
           @apply px-4 flex flex-wrap items-center;
      }
 
-     .get-post-column {
+     .get__post__column {
           @apply w-full md:w-6/12 lg:w-4/12 px-4;
      }
 
-     .get-post-card {
+     .get__post__card {
           @apply relative bg-white p-4 mb-4 rounded shadow;
      }
 
-     .get-post-card-delete-button {
+     .get__post__card__delete__button {
           @apply cursor-pointer inline-flex items-center rounded text-red-500 font-normal mt-4 p-2 border-red-500 border-solid border-2 bg-red-50;
      }
 
-     /* --------------- Create User Form -------------------- */
+     /* --------------- Create Post Form -------------------- */
 
-     .create-post {
+     .create__post {
           @apply relative py-16;
      }
      
-     .create-post-container {
+     .create__post__container {
           @apply container mx-auto;
      }
      
-     .create-post-row {
+     .create__post__row {
           @apply flex w-full lg:w-8/12 xl:w-6/12 justify-center items-center mx-auto;
      }
      
-     .create-post-form {
+     .create__post__form {
           @apply relative bg-white py-12 px-4 w-full rounded shadow;
      }
      
-     .create-post-form-heading {
+     .create__post__form__heading {
           @apply text-3xl text-black font-extrabold mb-4 text-center;
      }
      
-     .create-post-form-subheading {
+     .create__post__form__subheading {
           @apply text-base text-black font-normal mb-4 text-center;
      }
      
-     .create-post-form-wrapper {
+     .create__post__form__wrapper {
           @apply flex flex-row flex-wrap;
      }
      
-     .create-post-form-item {
+     .create__post__form__item {
           @apply w-full p-4;
      }
      
-     .create-post-form-item:last-child {
+     .create__post__form__item:last-child {
           @apply w-full p-4;
      }
      
-     .create-post-form-label {
+     .create__post__form__label {
           @apply hidden;
      }
      
-     .create-post-form-input {
+     .create__post__form__input {
           @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-primary;
      }
      
-     .create-post-form-textarea {
+     .create__post__form__textarea {
           @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-primary;
      }
      
-     .create-post-form-input.error, .create-post-form-textarea.error {
+     .create__post-form__input.error, .create__post__form__textarea.error {
           @apply border-red-500;
      }
      
-     .create-post-form-button {
+     .create__post__form__button {
           @apply relative inline-block w-full min-h-[3rem] p-4 bg-primary hover:bg-primaryHover text-white font-medium rounded-3xl transition-all duration-300 ease-in;
      }
      
-     .create-post-form-error {
+     .create__post__form__error {
           @apply text-red-500 font-medium m-4 p-4 border-red-500 border-solid border-2 bg-red-50;
      }
 
@@ -175,35 +188,35 @@
           @apply relative py-16;
      }
 
-     .register-container {
+     .register__container {
           @apply container mx-auto;
      }
 
-     .register-row {
+     .register__row {
           @apply flex w-full lg:w-8/12 xl:w-6/12 justify-center items-center mx-auto;
      }
 
-     .register-form {
+     .register__form {
           @apply relative bg-white py-12 px-4 w-full rounded shadow;
      }
 
-     .register-form-heading {
+     .register__form__heading {
           @apply text-3xl text-black font-extrabold mb-4 text-center;
      }
 
-     .register-form-subheading {
+     .register__form__subheading {
           @apply text-base text-black font-normal mb-4 text-center;
      }
 
-     .register-form-wrapper {
+     .register__form__wrapper {
           @apply flex flex-row flex-wrap;
      }
 
-     .register-form-item {
+     .register__form__item {
           @apply w-full p-4;
      }
 
-     .register-form-item:last-child {
+     .register__form__item:last-child {
           @apply w-full p-4;
      }
 
@@ -211,23 +224,23 @@
           @apply hidden;
      }
 
-     .register-form-input {
+     .register__form__input {
           @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-primary;
      }
 
-     .register-form-textarea {
+     .register__form__textarea {
           @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-primary;
      }
 
-     .register-form-input.error, .register-form-textarea.error {
+     .register__form__input.error, .register__form__textarea.error {
           @apply border-red-500;
      }
 
-     .register-form-button {
+     .register__form__button {
           @apply relative inline-block w-full min-h-[3rem] p-4 bg-primary hover:bg-primaryHover text-white font-medium rounded-3xl transition-all duration-300 ease-in;
      }
 
-     .register-form-error {
+     .register__form__error {
           @apply text-red-500 font-medium m-4 p-4 border-red-500 border-solid border-2 bg-red-50;
      }
 
@@ -237,59 +250,59 @@
           @apply relative py-16;
      }
 
-     .login-container {
+     .login__container {
           @apply container mx-auto;
      }
 
-     .login-row {
+     .login__row {
           @apply flex w-full lg:w-8/12 xl:w-6/12 justify-center items-center mx-auto;
      }
 
-     .login-form {
+     .login__form {
           @apply relative bg-white py-12 px-4 w-full rounded shadow;
      }
 
-     .login-form-heading {
+     .login__form__heading {
           @apply text-3xl text-black font-extrabold mb-4 text-center;
      }
 
-     .login-form-subheading {
+     .login__form__subheading {
           @apply text-base text-black font-normal mb-4 text-center;
      }
 
-     .login-form-wrapper {
+     .login__form__wrapper {
           @apply flex flex-row flex-wrap;
      }
 
-     .login-form-item {
+     .login__form__item {
           @apply w-full p-4;
      }
 
-     .login-form-item:last-child {
+     .login__form__item:last-child {
           @apply w-full p-4;
      }
 
-     .login-form-label {
+     .login__form__label {
           @apply hidden;
      }
 
-     .login-form-input {
+     .login__form__input {
           @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-primary;
      }
 
-     .login-form-textarea {
+     .login__form__textarea {
           @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-primary;
      }
 
-     .login-form-input.error, .login-form-textarea.error {
+     .login__form__input.error, .login__form__textarea.error {
           @apply border-red-500;
      }
 
-     .login-form-button {
+     .login__form__button {
           @apply relative inline-block w-full min-h-[3rem] p-4 bg-primary hover:bg-primaryHover text-white font-medium rounded-3xl transition-all duration-300 ease-in;
      }
 
-     .login-form-error {
+     .login__form__error {
           @apply text-red-500 font-medium m-4 p-4 border-red-500 border-solid border-2 bg-red-50;
      }
 }

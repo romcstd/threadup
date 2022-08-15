@@ -37,18 +37,18 @@ function GetPostData() {
 
   return (
     <>
-      <section className='get-post'>
-        <div className='get-post-container'>
+      <section className='get__post'>
+        <div className='get__post__container'>
         {posts.length > 0 ? (
-          <div className='get-post-row'>
+          <div className='get__post__row'>
             {posts.map((post) => (
-            <div className='get-post-column' key={post._id}>
-              <div className='get-post-card'>
+            <div className='get__post__column' key={post._id}>
+              <div className='get__post__card'>
                 {/* <div>{new Date(post.createdAt).toLocaleString('en-US')}</div> */}
                 <div className="italic text-sm text-gray-500 mb-4">{formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}</div>
                 <h2>{post.title}</h2>
                 <h2>{post.description}</h2>
-                <div className="get-post-card-delete-button" onClick={() => dispatch(deletePost(post._id))} >
+                <div className="get__post__card__delete__button" onClick={() => dispatch(deletePost(post._id))} >
                   <Icon.FaRegTrashAlt className="mr-1" /> Delete
                 </div>
               </div>

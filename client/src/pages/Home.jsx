@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { reset } from '../features/auth/authSlice'
+import { HomeBanner } from '../components'
 
 function Home() {
 
@@ -23,7 +24,9 @@ function Home() {
   }, [user, navigate, dispatch])
 
   return (
-    <div>Home</div>
+    <>
+      <HomeBanner />
+    </>
   )
 }
 
