@@ -1,0 +1,357 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --white: #ffffff;
+  --black: #000000;
+  -dark: #222222
+  --gray: #f5f5f5;
+  --grayDark: #333333;
+  --grayLight: #f0f0f0;
+  --primary: #0c5adb;
+  --primaryHover: #1140c6;
+}
+
+@theme {
+  --breakpoint-xs: 360px; /* 360px */
+  --breakpoint-s: 30rem; /* 480px */
+  --breakpoint-sm: 40rem; /* 640px */
+  --breakpoint-md: 48rem; /* 768px */
+  --breakpoint-lg: 64rem; /* 1024px */
+  --breakpoint-xl: 80rem; /* 1280px */
+  --breakpoint-2xl: 96rem; /* 1536px */
+  --breakpoint-hd: 120rem; /* 1920px */
+  --breakpoint-2k: 160rem; /* 2560px */
+  --breakpoint-4k: 240rem; /* 3840px */
+}
+
+@layer base {
+
+     body {
+          @apply bg-gray-100;
+     }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@layer components {
+
+     .loadingSpinnerContainer {
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 5000;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .loadingSpinner {
+          width: 64px;
+          height: 64px;
+          border: 8px solid;
+          border-color: #000 transparent #555 transparent;
+          border-radius: 50%;
+          animation: spin 1.2s linear infinite;
+        }
+        
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+     /* --------------- Navbar -------------------- */
+
+     .navbar {
+          @apply bg-white border-gray-200;
+     }
+
+     .navbar-container {
+          @apply container mx-auto;
+     }
+
+     .navbar-row {
+          @apply p-4 lg:px-4 flex flex-wrap justify-between items-center;
+     }
+
+     .navbar-brand-link {
+          @apply text-[#222222];
+     }
+
+     .navbar-brand-logo {
+          @apply text-[#222222] text-xl font-semibold whitespace-nowrap;
+     }
+
+     .navbar-desktop-menu {
+          @apply ml-auto flex;
+     }
+
+     .navbar-desktop-menu-item {
+          @apply ml-8;
+     }
+
+     .navbar-desktop-menu-link {
+          @apply text-[#222222] text-sm font-semibold;
+     }
+
+     /* --------------- Home Banner -------------------- */
+     .home-banner {
+          @apply relative h-[600px];
+     }
+
+     .home-banner-container {
+          @apply container h-full;
+     }
+
+     .home-banner-row {
+          @apply h-full flex items-center justify-center;
+     }
+     .home-banner-column {
+          @apply w-full px-4;
+     }
+     .home-banner-content {
+          @apply text-black text-center;
+     }
+
+     .home-banner-content-heading {
+          @apply text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4;
+     }
+
+     .home-banner-content-subheading {
+          @apply text-lg md:text-xl lg:text-2xl font-normal mb-8;
+     }
+
+     /* --------------- Get Post -------------------- */
+
+     .get-post {
+          @apply py-16;
+     }
+
+     .get-post-container {
+          @apply max-w-7xl mx-auto;
+     }
+
+     .get-post-row {
+          @apply px-4 flex flex-wrap items-center;
+     }
+
+     .get-post-column {
+          @apply w-full md:w-6/12 lg:w-4/12 px-4;
+     }
+
+     .get-post-card {
+          @apply relative bg-white p-4 mb-4 rounded shadow;
+     }
+
+     .get-post-card-delete-button {
+          @apply cursor-pointer inline-flex items-center rounded text-red-500 font-normal mt-4 p-2 border-red-500 border-solid border-2 bg-red-50;
+     }
+
+     /* --------------- Create Post Form -------------------- */
+
+     .create-post {
+          @apply relative py-16;
+     }
+     
+     .create-post-container {
+          @apply container mx-auto;
+     }
+     
+     .create-post-row {
+          @apply flex w-full lg:w-8/12 xl:w-6/12 justify-center items-center mx-auto;
+     }
+     
+     .create-post-form {
+          @apply relative bg-white py-12 px-4 w-full rounded shadow;
+     }
+     
+     .create-post-form-heading {
+          @apply text-3xl text-[#222222] font-extrabold mb-4 text-center;
+     }
+     
+     .create-post-form-subheading {
+          @apply text-base text-[#222222] font-normal mb-4 text-center;
+     }
+     
+     .create-post-form-wrapper {
+          @apply flex flex-row flex-wrap;
+     }
+     
+     .create-post-form-item {
+          @apply w-full p-4;
+     }
+     
+     .create-post-form-item:last-child {
+          @apply w-full p-4;
+     }
+     
+     .create-post-form-label {
+          @apply hidden;
+     }
+     
+     .create-post-form-input {
+          @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-[#0c5adb];
+     }
+     
+     .create-post-form-textarea {
+          @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-[#0c5adb];
+     }
+     
+     .create-post-form-input.error, .create-post-form-textarea.error {
+          @apply border-red-500;
+     }
+     
+     .create-post-form-button {
+          @apply relative inline-block w-full min-h-[3rem] p-4 bg-[#0c5adb] hover:bg-[#0c5adb] text-white font-medium rounded-3xl transition-all duration-300 ease-in;
+     }
+     
+     .create-post-form-error {
+          @apply text-red-500 font-medium m-4 p-4 border-red-500 border-solid border-2 bg-red-50;
+     }
+
+     /* --------------- Register Form -------------------- */
+
+     .register {
+          @apply relative py-16;
+     }
+
+     .register-container {
+          @apply container mx-auto;
+     }
+
+     .register-row {
+          @apply flex w-full lg:w-8/12 xl:w-6/12 justify-center items-center mx-auto;
+     }
+
+     .register-form {
+          @apply relative bg-white py-12 px-4 w-full rounded shadow;
+     }
+
+     .register-form-heading {
+          @apply text-3xl text-[#222222] font-extrabold mb-4 text-center;
+     }
+
+     .register-form-subheading {
+          @apply text-base text-[#222222] font-normal mb-4 text-center;
+     }
+
+     .register-form-wrapper {
+          @apply flex flex-row flex-wrap;
+     }
+
+     .register-form-item {
+          @apply w-full p-4;
+     }
+
+     .register-form-item:last-child {
+          @apply w-full p-4;
+     }
+
+     .register-form-label {
+          @apply hidden;
+     }
+
+     .register-form-input {
+          @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-[#0c5adb];
+     }
+
+     .register-form-textarea {
+          @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-[#0c5adb];
+     }
+
+     .register-form-input.error, .register-form-textarea.error {
+          @apply border-red-500;
+     }
+
+     .register-form-button {
+          @apply relative inline-block w-full min-h-[3rem] p-4 bg-[#0c5adb] hover:bg-[#0c5adb] text-white font-medium rounded-3xl transition-all duration-300 ease-in;
+     }
+
+     .register-form-error {
+          @apply text-red-500 font-medium m-4 p-4 border-red-500 border-solid border-2 bg-red-50;
+     }
+
+     /* --------------- Login Form -------------------- */
+
+     .login {
+          @apply relative py-16;
+     }
+
+     .login-container {
+          @apply container mx-auto;
+     }
+
+     .login-row {
+          @apply flex w-full lg:w-8/12 xl:w-6/12 justify-center items-center mx-auto;
+     }
+
+     .login-form {
+          @apply relative bg-white py-12 px-4 w-full rounded shadow;
+     }
+
+     .login-form-heading {
+          @apply text-3xl text-[#222222] font-extrabold mb-4 text-center;
+     }
+
+     .login-form-subheading {
+          @apply text-base text-[#222222] font-normal mb-4 text-center;
+     }
+
+     .login-form-wrapper {
+          @apply flex flex-row flex-wrap;
+     }
+
+     .login-form-item {
+          @apply w-full p-4;
+     }
+
+     .login-form-item:last-child {
+          @apply w-full p-4;
+     }
+
+     .login-form-label {
+          @apply hidden;
+     }
+
+     .login-form-input {
+          @apply relative inline-flex w-full min-h-[3rem] p-4  transition-all duration-300 ease-in focus:border-[#0c5adb];
+     }
+
+     .login-form-textarea {
+          @apply relative inline-flex w-full min-h-[3rem] p-4 border-solid border-2 border-inherit outline-none transition-all duration-300 ease-in focus:border-[#0c5adb];
+     }
+
+     .login-form-input.error, .login-form-textarea.error {
+          @apply border-red-500;
+     }
+
+     .login-form-button {
+          @apply relative cursor-pointer inline-block w-full min-h-[3rem] p-4 bg-[#0c5adb] hover:bg-[#0c5adb] text-white font-medium rounded-3xl transition-all duration-300 ease-in;
+     }
+
+     .login-form-error {
+          @apply text-red-500 font-medium m-4 p-4 border-red-500 border-solid border-2 bg-red-50;
+     }
+}
