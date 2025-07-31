@@ -8,7 +8,7 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
-        <main className='main'>
+        <main className="main">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
