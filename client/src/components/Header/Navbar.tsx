@@ -1,13 +1,22 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../../features/auth/useAuthStore';
 
 function Navbar() {
+    const navigate = useNavigate();
+    const user = useAuthStore(state => state.user);
+    const reset = useAuthStore(state => state.reset);
+    const logout = useAuthStore(state => state.logout);
 
     const GetData = [
-
         { text: 'Login', url: '/login', },
         { text: 'Register', url: '/register', }
-
     ];
+
+    const onLogout = () => {
+        logout();
+        reset();
+        navigate('/');
+    };
 
     return (
         <>
@@ -32,16 +41,30 @@ function Navbar() {
                         </div>
 
                         <div className="navbar-desktop-menu">
+                            {user ? (
+                                <>
+                                    <div className="navbar-desktop-menu-item">
+                                        <Link to="/dashboard" className="navbar-desktop-menu-link">Dashboard</Link>
+                                    </div>
+                                    <div className="navbar-desktop-menu-item">
 
-                            {GetData.map((data, index) => (
+                                        <button onClick={onLogout} className="navbar-desktop-menu-link">Logout</button>
 
-                                <div key={data.text + index} className="navbar-desktop-menu-item">
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    {GetData.map((data, index) => (
 
-                                    <Link to={data.url} className="navbar-desktop-menu-link">{data.text}</Link>
+                                        <div key={data.text + index} className="navbar-desktop-menu-item">
 
-                                </div>
+                                            <Link to={data.url} className="navbar-desktop-menu-link">{data.text}</Link>
 
-                            ))}
+                                        </div>
+
+                                    ))}
+                                </>
+                            )}
 
                         </div>
 
@@ -51,7 +74,7 @@ function Navbar() {
 
                 </div>
 
-            </nav>
+            </nav >
         </>
     )
 }

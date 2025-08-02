@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home, Login, Register, Dashboard } from './pages';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header/Header';
+import { Home, Login, Register, Dashboard } from './pages';
 
 function App() {
 
@@ -18,6 +20,7 @@ function App() {
         </main>
         {/* <Footer /> */}
       </BrowserRouter>
+      <ToastContainer />
     </>
   )
 }

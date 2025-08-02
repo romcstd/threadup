@@ -1,5 +1,6 @@
-import { create } from 'zustand'
-import axios from 'axios'
+import { create } from 'zustand';
+import axios from 'axios';
+const API_URL = '/api/users/';
 
 interface AuthState {
   user: any | null;
@@ -25,7 +26,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       set({ isLoading: true });
       // Call your registration API (replace URL with your endpoint)
-      const response = await axios.post('/api/auth/register', userData);
+      const response = await axios.post(API_URL + 'register', userData);
       const newUser = response.data;
       // On success, store user and update state
       localStorage.setItem('user', JSON.stringify(newUser));
@@ -35,7 +36,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({
         isLoading: false,
         isError: true,
-        message: error.response?.data || error.message
+        message: error.response?.data.message || error.message
       });
     }
   },
@@ -44,7 +45,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       set({ isLoading: true });
       // Call your login API
-      const response = await axios.post('/api/auth/login', userData);
+      const response = await axios.post(API_URL + 'login', userData);
       const loggedInUser = response.data;
       localStorage.setItem('user', JSON.stringify(loggedInUser));
       set({ user: loggedInUser, isLoading: false, isSuccess: true });
@@ -52,7 +53,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({
         isLoading: false,
         isError: true,
-        message: error.response?.data || error.message
+        message: error.response?.data.message || error.message
       });
     }
   },

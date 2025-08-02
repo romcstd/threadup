@@ -6,7 +6,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #242424;
   background-color: #242424;
 
   font-synthesis: none;
@@ -209,11 +209,11 @@
      }
      
      .create-post-form-input {
-          @apply relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
+          @apply text-dark relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
      }
      
      .create-post-form-textarea {
-          @apply relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
+          @apply text-dark relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
      }
      
      .create-post-form-input.error, .create-post-form-textarea.error {
@@ -221,7 +221,7 @@
      }
      
      .create-post-form-button {
-          @apply relative inline-block w-full min-h-[3rem] p-4 bg-primary hover:bg-primary text-white font-medium rounded-3xl transition-all duration-300 ease-in;
+          @apply relative cursor-pointer inline-block w-full min-h-[3rem] p-4 bg-primary hover:bg-primary text-white font-medium rounded-3xl transition-all duration-300 ease-in;
      }
      
      .create-post-form-error {
@@ -271,11 +271,11 @@
      }
 
      .register-form-input {
-          @apply relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
+          @apply text-dark relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
      }
 
      .register-form-textarea {
-          @apply relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
+          @apply text-dark relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
      }
 
      .register-form-input.error, .register-form-textarea.error {
@@ -283,7 +283,7 @@
      }
 
      .register-form-button {
-          @apply relative inline-block w-full min-h-[3rem] p-4 bg-primary hover:bg-primary text-white font-medium rounded-3xl transition-all duration-300 ease-in;
+          @apply relative cursor-pointer inline-block w-full min-h-[3rem] p-4 bg-primary hover:bg-primary text-white font-medium rounded-3xl transition-all duration-300 ease-in;
      }
 
      .register-form-error {
@@ -333,11 +333,11 @@
      }
 
      .login-form-input {
-          @apply relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
+          @apply text-dark relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
      }
 
      .login-form-textarea {
-          @apply relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
+          @apply text-dark relative inline-flex w-full min-h-12 p-4 border border-gray-300 transition-colors duration-300 focus:outline-2 focus:outline-primary focus:outline-offset-2;
      }
 
      .login-form-input.error, .login-form-textarea.error {

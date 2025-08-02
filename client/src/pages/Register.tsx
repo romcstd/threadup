@@ -21,18 +21,13 @@ const Register = () => {
 
   const { name, email, password, confirmPassword } = formData;
   const navigate = useNavigate();
-
-  const { user, isLoading, isError, isSuccess, message, register, reset } = useAuthStore(
-    (state) => ({
-      user: state.user,
-      isLoading: state.isLoading,
-      isError: state.isError,
-      isSuccess: state.isSuccess,
-      message: state.message,
-      register: state.register,
-      reset: state.reset,
-    })
-  );
+  const user = useAuthStore((state) => state.user);
+  const isLoading = useAuthStore((state) => state.isLoading);
+  const isError = useAuthStore((state) => state.isError);
+  const isSuccess = useAuthStore((state) => state.isSuccess);
+  const message = useAuthStore((state) => state.message);
+  const register = useAuthStore((state) => state.register);
+  const reset = useAuthStore((state) => state.reset);
 
   useEffect(() => {
     if (isError) {

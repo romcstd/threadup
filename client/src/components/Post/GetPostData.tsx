@@ -1,46 +1,49 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../features/auth/useAuthStore';
 import { usePostStore } from '../../features/posts/usePostStore';
 import { formatDistanceToNow } from 'date-fns';
 import { Trash } from 'lucide-react';
 import Spinner from '../../components/Spinner';
 import type { Post } from '../../features/posts/types';
+import { toast } from 'react-toastify';
 
 const GetPostData = () => {
-  const navigate = useNavigate();
 
-  const { userAuth, resetAuth } = useAuthStore((state) => ({
-    userAuth: state.user,
-    resetAuth: state.reset,
-  }));
+  const userAuth = useAuthStore(state => state.user);
+  const resetAuth = useAuthStore(state => state.reset);
 
-  const { posts, isLoading, isError, message, fetchPosts, deletePost, reset: resetPosts } = usePostStore((state) => ({
-    posts: state.posts,
-    isLoading: state.isLoading,
-    isError: state.isError,
-    message: state.message,
-    fetchPosts: state.fetchPosts,
-    deletePost: state.deletePost,
-    reset: state.reset,
-  }));
+  const posts = usePostStore(state => state.posts);
+  const fetchPosts = usePostStore(state => state.fetchPosts);
+  const deletePost = usePostStore(state => state.deletePost);
+  const resetPosts = usePostStore(state => state.reset);
+  const isLoading = usePostStore(state => state.isLoading);
+  const isError = usePostStore(state => state.isError);
+  const isSuccess = usePostStore(state => state.isSuccess);
+  const message = usePostStore(state => state.message);
+  const actionType = usePostStore(state => state.actionType);
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
 
-    if (!userAuth) {
-      navigate('/');
+    if (userAuth) {
+      fetchPosts();
     }
-
-    fetchPosts();
 
     return () => {
       resetAuth();
       resetPosts();
     }
-  }, [userAuth, navigate, isError, message, fetchPosts, resetAuth, resetPosts]);
+  }, [userAuth, fetchPosts, resetAuth, resetPosts]);
+
+  useEffect(() => {
+    if (isSuccess && actionType === 'delete') {
+      toast.success(message || 'Post deleted successfully');
+      resetPosts();
+    }
+    if (isError) {
+      toast.error(message || 'An error occurred');
+      resetPosts();
+    }
+  }, [isSuccess, isError, message, actionType, resetPosts]);
 
   if (isLoading) {
     return <Spinner />
@@ -57,8 +60,8 @@ const GetPostData = () => {
                   <div className="italic text-sm text-gray-500 mb-4">
                     {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
                   </div>
-                  <h2>{post.title}</h2>
-                  <h2>{post.description}</h2>
+                  <h2 className="text-xl text-dark">{post.title}</h2>
+                  <p className="text-gray-500">{post.description}</p>
                   <div
                     className="get-post-card-delete-button"
                     onClick={() => deletePost(post._id)}

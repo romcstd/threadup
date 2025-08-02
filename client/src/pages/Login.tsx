@@ -17,17 +17,13 @@ const Login = () => {
   const { email, password } = formData;
   const navigate = useNavigate();
 
-  const { user, isLoading, isError, isSuccess, message, login, reset } = useAuthStore(
-    (state) => ({
-      user: state.user,
-      isLoading: state.isLoading,
-      isError: state.isError,
-      isSuccess: state.isSuccess,
-      message: state.message,
-      login: state.login,
-      reset: state.reset,
-    })
-  );
+  const user = useAuthStore((state) => state.user);
+  const isLoading = useAuthStore((state) => state.isLoading);
+  const isError = useAuthStore((state) => state.isError);
+  const isSuccess = useAuthStore((state) => state.isSuccess);
+  const message = useAuthStore((state) => state.message);
+  const login = useAuthStore((state) => state.login);
+  const reset = useAuthStore((state) => state.reset);
 
   useEffect(() => {
     if (isError) {
