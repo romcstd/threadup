@@ -1,7 +1,7 @@
 services:
   mongo:
     image: mongo
-    container_name: blog-mongo
+    container_name: thread-mongo
     ports:
       - '27017:27017'
     volumes:
@@ -11,13 +11,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: blog-server
+    container_name: thread-server
     volumes:
       - ./server:/app/server
       - /app/server/node_modules
     environment:
       - NODE_ENV=development
-      - MONGO_URL=mongodb://mongo:27017/blog
+      - MONGO_URL=mongodb://mongo:27017/thread
     ports:
       - '5000:5000'
     command: npm run dev
@@ -26,7 +26,7 @@ services:
 
   client:
     image: node:20.19.0
-    container_name: blog-client
+    container_name: thread-client
     working_dir: /app/client
     volumes:
       - ./client:/app/client
