@@ -1,18 +1,17 @@
 {
   "name": "blog-post",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.4",
+  "license": "UNLICENSED",
+  "author": "Romel Custodio",
   "scripts": {
-    "client": "cd client && npm run client",
-    "server": "cd server && nodemon index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up --build",
+    "docker:dev:open": "npm run docker:dev && start http://localhost:5137 && start http://localhost:5000",
+    "docker:prod": "docker-compose -f docker-compose.prod.yml up --build -d"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "concurrently": "^7.3.0",
-    "nodemon": "^2.0.19"
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }

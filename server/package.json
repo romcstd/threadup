@@ -1,11 +1,11 @@
 {
   "name": "server",
-  "version": "1.0.0",
+  "version": "1.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "Romel Custodio",
@@ -18,7 +18,9 @@
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.5.0",
-    "nodemon": "^2.0.19"
+    "mongoose": "^6.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
