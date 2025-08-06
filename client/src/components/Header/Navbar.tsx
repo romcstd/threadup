@@ -24,53 +24,49 @@ function Navbar() {
 
                 <div className="navbar-container">
 
-                    <div className="navbar-row">
+                    <div className="navbar-brand">
 
-                        <div className="navbar-brand">
+                        <div className="navbar-brand-item">
 
-                            <div className="navbar-brand-item">
+                            <Link to="/" className="navbar-brand-link">
 
-                                <Link to="/" className="navbar-brand-link">
+                                <div className="navbar-brand-logo">ThreadUp</div>
 
-                                    <div className="navbar-brand-logo">BLOG APP</div>
-
-                                </Link>
-
-                            </div>
+                            </Link>
 
                         </div>
-
-                        <div className="navbar-desktop-menu">
-                            {user ? (
-                                <>
-                                    <div className="navbar-desktop-menu-item">
-                                        <Link to="/dashboard" className="navbar-desktop-menu-link">Dashboard</Link>
-                                    </div>
-                                    <div className="navbar-desktop-menu-item">
-
-                                        <button onClick={onLogout} className="navbar-desktop-menu-link">Logout</button>
-
-                                    </div>
-                                </>
-                            ) : (
-                                <>
-                                    {GetData.map((data, index) => (
-
-                                        <div key={data.text + index} className="navbar-desktop-menu-item">
-
-                                            <Link to={data.url} className="navbar-desktop-menu-link">{data.text}</Link>
-
-                                        </div>
-
-                                    ))}
-                                </>
-                            )}
-
-                        </div>
-
-                        <div className="navbar-mobile-menu"></div>
 
                     </div>
+
+                    <div className="navbar-desktop-menu">
+                        {user ? (
+                            <>
+                                <div className="navbar-desktop-menu-item">
+                                    <Link to="/dashboard" className="navbar-desktop-menu-link">Dashboard</Link>
+                                </div>
+                                <div className="navbar-desktop-menu-item">
+
+                                    <button onClick={onLogout} className="navbar-desktop-menu-link">Logout</button>
+
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                {GetData.map((data, index) => (
+
+                                    <div key={data.text + index} className="navbar-desktop-menu-item">
+
+                                        <Link to={data.url} className="navbar-desktop-menu-link">{data.text}</Link>
+
+                                    </div>
+
+                                ))}
+                            </>
+                        )}
+
+                    </div>
+
+                    <div className="navbar-mobile-menu"></div>
 
                 </div>
 

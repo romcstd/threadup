@@ -12,6 +12,9 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5137, // Vite frontend will run on localhost:3000
     open: true, // Auto-open browser on server start
+    watch: {
+      usePolling: true  // <-- Enable polling to detect file changes inside Docker
+    },
     proxy: {
       '/api': {
         // target: 'http://localhost:5000', // Proxy API requests to Express backend

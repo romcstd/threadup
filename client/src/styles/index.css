@@ -17,6 +17,7 @@
 
 @theme {
   --font-family-sans: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-family-inter: 'Inter', sans-serif;
   --color-primary: #0c5adb;
   --color-primary-hover: #1140c6;
   --color-black: #000000;
@@ -37,13 +38,12 @@
 @layer base {
 
      body {
-          @apply bg-gray-100;
+          @apply bg-white font-family-inter text-dark text-base leading-6;
      }
 }
 
 @utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
+  @apply mx-auto;
 }
 
 @layer components {
@@ -82,15 +82,11 @@
      /* --------------- Navbar -------------------- */
 
      .navbar {
-          @apply bg-white border-gray-200;
+          @apply bg-white border-gray-200 absolute top-0 left-0 right-0 z-50 shadow-md;
      }
 
      .navbar-container {
-          @apply container mx-auto;
-     }
-
-     .navbar-row {
-          @apply p-4 lg:px-4 flex flex-wrap justify-between items-center;
+          @apply container flex items-center justify-between py-6 px-0 sm:px-8;
      }
 
      .navbar-brand-link {
@@ -115,7 +111,7 @@
 
      /* --------------- Home Banner -------------------- */
      .home-banner {
-          @apply relative h-[600px];
+          @apply relative h-screen;
      }
 
      .home-banner-container {
@@ -173,7 +169,7 @@
      }
      
      .create-post-container {
-          @apply container mx-auto;
+          @apply container;
      }
      
      .create-post-row {
@@ -235,7 +231,7 @@
      }
 
      .register-container {
-          @apply container mx-auto;
+          @apply container;
      }
 
      .register-row {
@@ -293,11 +289,11 @@
      /* --------------- Login Form -------------------- */
 
      .login {
-          @apply relative py-16;
+          @apply relative h-dvh sm:h-screen flex items-center justify-center;
      }
 
      .login-container {
-          @apply container mx-auto;
+          @apply container;
      }
 
      .login-row {
