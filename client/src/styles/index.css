@@ -110,7 +110,7 @@
      }
 
      .navbar-desktop-menu-link {
-          @apply text-dark text-sm font-semibold;
+          @apply text-dark text-sm font-semibold cursor-pointer;
      }
 
      /* --------------- Home Banner -------------------- */

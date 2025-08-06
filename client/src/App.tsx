@@ -20,7 +20,9 @@ function App() {
         </main>
         {/* <Footer /> */}
       </BrowserRouter>
-      <ToastContainer />
+      <ToastContainer 
+        position="bottom-right"
+      />
     </>
   )
 }
