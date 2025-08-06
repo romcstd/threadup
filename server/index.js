@@ -32,4 +32,5 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Server started on port http://localhost:${port}`));
+// app.listen(port, () => console.log(`Server started on port http://localhost:${port}`));
+app.listen(port, '0.0.0.0', () => console.log(`Server started on port http://localhost:${port}`));
