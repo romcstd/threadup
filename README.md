@@ -1,4 +1,5 @@
 🧵 ThreadUp
+
 ThreadUp is a modern MERN-stack web application that empowers users to create accounts, share posts, and engage in meaningful discussions through thread-based conversations. Whether it’s sharing ideas, starting debates, or building a community, ThreadUp provides a clean and intuitive platform for open dialogue.
 
 🚀 Tech Stack
