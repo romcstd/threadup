@@ -1,7 +1,7 @@
 services:
   mongo:
     image: mongo
-    container_name: blog-mongo
+    container_name: thread-mongo
     ports:
       - '27017:27017'
     volumes:
@@ -11,10 +11,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: blog-app
+    container_name: thread-app
     environment:
       - NODE_ENV=production
-      - MONGO_URL=mongodb://mongo:27017/blog
+      - MONGO_URL=mongodb://mongo:27017/thread
     ports:
       - '5000:5000'
     depends_on:
