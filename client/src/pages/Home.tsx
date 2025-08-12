@@ -1,28 +1,28 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../features/auth/useAuthStore';
-import HomeBanner from '../components/HomeBanner';
+import HomePage from '../components/HomePage';
 
-const Home = () => {
+export const Home = () => {
 
   const navigate = useNavigate();
   const user = useAuthStore((state) => state.user);
   const reset = useAuthStore((state) => state.reset);
 
+  // Redirect if authenticated
   useEffect(() => {
     if (user) {
       navigate('/dashboard');
     }
+  }, [user, navigate]);
+
+  useEffect(() => {
     return () => {
       reset();
     }
-  }, [user, navigate, reset]);
+  }, [reset]);
 
   return (
-    <>
-      <HomeBanner />
-    </>
+    <HomePage />
   );
 };
-
-export default Home;
