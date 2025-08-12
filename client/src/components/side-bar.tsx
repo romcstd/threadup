@@ -5,7 +5,7 @@ import Logo from '@/assets/logo/logo.png';
 export const SideBar = () => {
     return (
         <aside
-            className="fixed top-0 left-0 w-16 h-full bg-white border-r z-50"
+            className="fixed top-0 left-0 w-16 h-full bg-white border-r z-50 hidden md:block"
             role="navigation"
             aria-label="Side Bar"
         >
