@@ -73,7 +73,7 @@
 @layer base {
 
      body {
-          @apply bg-white font-family-inter text-dark text-base leading-6;
+          @apply font-family-inter text-dark text-base leading-6;
      }
 }
 
@@ -461,6 +461,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#f4f4f5];
   }
 }

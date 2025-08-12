@@ -1,5 +1,5 @@
 import { useState, useEffect, type ChangeEvent, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Spinner from './Spinner';
 import { useAuthStore } from '@/features/auth/useAuthStore';
@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import Logo from '@/assets/logo/logo-with-text.png';
+// import DarkLogo from '@/assets/logo/dark-logo-with-text.png';
 
 interface FormData {
     email: string;
@@ -72,7 +74,12 @@ export function LoginForm({
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card>
-                <CardHeader>
+                <CardHeader className="text-center">
+                    <div className="flex justify-center mb-4">
+                        <Link to="/">
+                            <img src={Logo} alt="Logo" className="w-48" />
+                        </Link>
+                    </div>
                     <CardTitle>Login to your account</CardTitle>
                     <CardDescription>
                         Enter your email below to login to your account
