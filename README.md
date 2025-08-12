@@ -1,5 +1,4 @@
 # 🧵 ThreadUp
-
 ThreadUp is a modern MERN-stack web application that empowers users to create accounts, share posts, and engage in meaningful discussions through thread-based conversations. Whether it’s sharing ideas, starting debates, or building a community, ThreadUp provides a clean and intuitive platform for open dialogue.
 
 ## 🚀 Tech Stack
@@ -26,25 +25,26 @@ ThreadUp is designed for communities, teams, and individuals who want a minimal 
 ## 📂 Project Structure
 
 /client    → React + Vite + Tailwind CSS (Frontend)
+
 /server    → Node.js + Express.js API (Backend)
+
 /db        → MongoDB setup
+
 /docker    → Docker configurations
 
-🛠️ Features
+## 🛠️ Features
 
-User Registration & Login
+- User Registration & Login
 
-Thread-based Post Creation
+- Thread-based Post Creation
 
-Engage in Discussions via Replies
+- Responsive & Clean UI
 
-Responsive & Clean UI
+- RESTful API with Express.js
 
-RESTful API with Express.js
+- Global State with Zustand
 
-Global State with Zustand
-
-Dockerized for Local & Production Environments
+- Dockerized for Local & Production Environments
 
 1. Clone the Repository
 
@@ -76,5 +76,5 @@ docker-compose up --build
 Frontend: http://localhost:5173
 Backend API: http://localhost:5000
 
-🐳 Docker Deployment (Production Ready)
+## 🐳 Docker Deployment (Production Ready)
 docker-compose -f docker-compose.prod.yml up --build
