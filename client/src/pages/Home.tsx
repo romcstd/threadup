@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../features/auth/useAuthStore';
-import HomePage from '../components/HomePage';
+import AuthIntro from '../components/AuthIntro';
 
 export const Home = () => {
 
@@ -23,6 +23,8 @@ export const Home = () => {
   }, [reset]);
 
   return (
-    <HomePage />
+    <>
+      <AuthIntro />
+    </>
   );
 };
