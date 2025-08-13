@@ -4,8 +4,7 @@ import { toast } from 'react-toastify';
 
 
 const CreatePostForm = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [content, setContent] = useState('');
 
   // Get createPost action from Zustand store
   const createPost = usePostStore(state => state.createPost);
@@ -20,24 +19,14 @@ const CreatePostForm = () => {
   const formOnSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
-    if (!title.trim() && !description.trim()) {
-      toast.error('Both Title and Description cannot be empty');
-      return;
-    }
-
-    if (!title.trim()) {
-      toast.error('Title cannot be empty');
-      return;
-    }
-    if (!description.trim()) {
-      toast.error('Description cannot be empty');
+    if (!content.trim()) {
+      toast.error('Content cannot be empty');
       return;
     }
 
     try {
-      await createPost({ title: title.trim(), description: description.trim() })
-      setTitle('')
-      setDescription('')
+      await createPost({ content: content.trim() })
+      setContent('')
     } catch {
       // Error is globally handled by Zustand (no need for extra catch handling here)
     }
@@ -62,22 +51,13 @@ const CreatePostForm = () => {
             <div className="create-post-form-heading">Create post</div>
             <div className="create-post-form-wrapper">
               <div className="create-post-form-item">
-                <input
-                  type="text"
-                  name="title"
-                  className="create-post-form-input"
-                  placeholder="Title"
-                  onChange={(e) => setTitle(e.target.value)}
-                  value={title}
-                />
-              </div>
-              <div className="create-post-form-item">
                 <textarea
-                  rows={5}
+                  rows={4}
                   className="create-post-form-textarea"
                   placeholder="What's on your mind?"
-                  onChange={(e) => setDescription(e.target.value)}
-                  value={description}
+                  onChange={(e) => setContent(e.target.value)}
+                  value={content}
+                  name="content"
                 />
               </div>
               <div className="create-post-form-item">
@@ -86,7 +66,6 @@ const CreatePostForm = () => {
                 </button>
               </div>
             </div>
-            {/* {error && <div className="create-post-form-error">{error}</div>} */}
           </form>
         </div>
       </div>

@@ -10,8 +10,7 @@ export interface User {
 // Post type with populated user
 export interface PostWithUser {
   _id: string;
-  title: string;
-  description: string;
+  content: string
   user: User; // Populated user object
   createdAt: string;
   updatedAt: string;
@@ -20,8 +19,7 @@ export interface PostWithUser {
 // Post type with user ID only
 export interface Post {
   _id: string;
-  title: string;
-  description: string;
+  content: string
   user: string | User; // Can be either string ID or populated User object
   createdAt: string;
   updatedAt: string;
