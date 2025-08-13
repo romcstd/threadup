@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import Header from './components/Header/Header';
 import { SideBar } from './components/side-bar';
 import { Home, Login, Register, Dashboard } from './pages';
 
@@ -23,8 +22,7 @@ function MainLayout() {
   return (
     <div className="relative h-screen w-screen">
       {!hideSidebar && <SideBar />}
-      {/* <Header /> */}
-      <main className={`fixed top-0 bottom-0 ${hideSidebar ? 'left-0' : 'left-0 md:left-16'} right-0 bg-secondary z-0 overflow-y-auto ${!hideSidebar ? 'max-w-5xl mx-auto' : ''}`}>
+      <main className={`fixed top-0 bottom-0 ${hideSidebar ? 'left-0' : 'left-0 md:left-16'} right-0 bg-secondary z-0 overflow-y-auto`}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />

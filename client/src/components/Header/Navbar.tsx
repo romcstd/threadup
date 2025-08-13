@@ -42,9 +42,6 @@ function Navbar() {
                         {user ? (
                             <>
                                 <div className="navbar-desktop-menu-item">
-                                    <Link to="/dashboard" className="navbar-desktop-menu-link">Dashboard</Link>
-                                </div>
-                                <div className="navbar-desktop-menu-item">
 
                                     <button onClick={onLogout} className="navbar-desktop-menu-link">Logout</button>
 

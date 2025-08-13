@@ -2,7 +2,18 @@ const asyncHandler = require('express-async-handler')
 
 const Post = require('../models/postModel')
 
-// @desc    Get posts
+// @desc    Get all posts (public)
+// @route   GET /api/posts/all
+// @access  Public
+const getAllPosts = asyncHandler(async (req, res) => {
+  const posts = await Post.find({})
+    .populate('user', 'name email') // Include user info (name and email only)
+    .sort({ createdAt: -1 }) // Sort by newest first
+
+  res.status(200).json(posts)
+})
+
+// @desc    Get user's posts
 // @route   GET /api/posts
 // @access  Private
 const getPosts = asyncHandler(async (req, res) => {
@@ -74,7 +85,7 @@ const deletePost = asyncHandler(async (req, res) => {
   // Check for user
   if (!req.user) {
     res.status(401)
-    throw new Error('User not found')
+    throw new Error('User not authorized')
   }
 
   // Make sure the logged in user matches the post user
@@ -88,5 +99,10 @@ const deletePost = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id })
 })
 
-module.exports = { getPosts, createPost, updatePost, deletePost,
+module.exports = { 
+  getAllPosts, // Add this new function
+  getPosts, 
+  createPost, 
+  updatePost, 
+  deletePost,
 }

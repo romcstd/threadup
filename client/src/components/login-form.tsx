@@ -49,7 +49,7 @@ export function LoginForm({
         }
 
         if (isSuccess || user) {
-            navigate('/dashboard');
+            navigate('/');
         }
 
         reset();

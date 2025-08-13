@@ -53,7 +53,7 @@ export function RegisterForm({
         }
 
         if (isSuccess || user) {
-            navigate('/dashboard');
+            navigate('/');
         }
 
         reset();
