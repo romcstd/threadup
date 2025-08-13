@@ -1,20 +1,12 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../features/auth/useAuthStore';
-import AuthIntro from '../components/AuthIntro';
+import AuthIntro from '@/components/AuthIntro';
+import CreatePostForm from '@/components/Post/CreatePostForm';
+import AllPosts from '@/components/Post/AllPosts';
 
 export const Home = () => {
-
-  const navigate = useNavigate();
   const user = useAuthStore((state) => state.user);
   const reset = useAuthStore((state) => state.reset);
-
-  // Redirect if authenticated
-  useEffect(() => {
-    if (user) {
-      navigate('/dashboard');
-    }
-  }, [user, navigate]);
 
   useEffect(() => {
     return () => {
@@ -24,7 +16,14 @@ export const Home = () => {
 
   return (
     <>
-      <AuthIntro />
+      {/* Show AuthIntro only for non-authenticated users */}
+      {!user && <AuthIntro />}
+
+      {/* Show CreatePostForm only for authenticated users */}
+      {user && <CreatePostForm />}
+
+      {/* Always show AllPosts */}
+      <AllPosts />
     </>
   );
 };

@@ -9,10 +9,11 @@ interface PostState {
   isError: boolean;
   isSuccess: boolean;
   message: string;
-  actionType: 'create' | 'delete' | null;
-  fetchPosts: () => Promise<void>;
+  actionType: 'create' | 'delete' | 'update' | null;
+  fetchPosts: () => Promise<void>; // Fetch user's own posts
+  fetchAllPosts: () => Promise<void>; // Fetch all posts (public)
   createPost: (postData: { title: string; description: string }) => Promise<void>;
-  updatePost: (id: string, postData: { title?: string; content?: string }) => Promise<void>;
+  updatePost: (id: string, postData: { title?: string; description?: string }) => Promise<void>;
   deletePost: (id: string) => Promise<void>;
   reset: () => void;
 }
@@ -26,6 +27,7 @@ export const usePostStore = create<PostState>((set) => ({
   message: '',
   actionType: null,
   
+  // Existing function - fetches user-specific posts
   fetchPosts: async () => {
     try {
       set({ isLoading: true, isError: false, message: '' });
@@ -34,6 +36,23 @@ export const usePostStore = create<PostState>((set) => ({
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
       const response = await axios.get('/api/posts', config);
+      set({ posts: response.data, isLoading: false });
+    } catch (error: any) {
+      set({
+        isLoading: false,
+        isError: true,
+        message: error.response?.data.message || error.message
+      });
+    }
+  },
+
+  // New function - fetches all posts without authentication
+  fetchAllPosts: async () => {
+    try {
+      set({ isLoading: true, isError: false, message: '' });
+
+      // No authentication headers needed for public posts
+      const response = await axios.get('/api/posts/all');
       set({ posts: response.data, isLoading: false });
     } catch (error: any) {
       set({
@@ -52,7 +71,6 @@ export const usePostStore = create<PostState>((set) => ({
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
       const response = await axios.post('/api/posts', postData, config);
-      // Add new post to state
       set(state => ({
         posts: [...state.posts, response.data],
         isLoading: false,
