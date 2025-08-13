@@ -7,8 +7,6 @@ import type { Post } from '@/features/posts/types';
 interface PostCardProps {
   post: Post;
   showActions?: boolean;
-  onDelete?: (id: string) => void;
-  onEdit?: (id: string) => void;
   currentUserId?: string;
 }
 
@@ -62,7 +60,7 @@ const PostCard: React.FC<PostCardProps> = ({
 
       {/* Content */}
       <div className="px-4 pb-3">
-        <p className="text-gray-800 text-sm leading-relaxed">{post.description}</p>
+        <p className="text-gray-800 text-sm leading-relaxed">{post.content}</p>
       </div>
 
       {/* Footer with engagement buttons */}
