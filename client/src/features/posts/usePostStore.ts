@@ -12,8 +12,8 @@ interface PostState {
   actionType: 'create' | 'delete' | 'update' | null;
   fetchPosts: () => Promise<void>; // Fetch user's own posts
   fetchAllPosts: () => Promise<void>; // Fetch all posts (public)
-  createPost: (postData: { title: string; description: string }) => Promise<void>;
-  updatePost: (id: string, postData: { title?: string; description?: string }) => Promise<void>;
+  createPost: (postData: { content: string }) => Promise<void>;
+  updatePost: (id: string, postData: { content: string }) => Promise<void>;
   deletePost: (id: string) => Promise<void>;
   reset: () => void;
 }

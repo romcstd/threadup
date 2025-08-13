@@ -60,8 +60,7 @@ const GetPostData = () => {
                   <div className="italic text-sm text-gray-500 mb-4">
                     {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
                   </div>
-                  <h2 className="text-xl text-dark">{post.title}</h2>
-                  <p className="text-gray-500">{post.description}</p>
+                  <p className="text-gray-500">{post.content}</p>
                   <div
                     className="get-post-card-delete-button"
                     onClick={() => deletePost(post._id)}

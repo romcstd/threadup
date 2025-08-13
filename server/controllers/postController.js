@@ -1,5 +1,4 @@
 const asyncHandler = require('express-async-handler')
-
 const Post = require('../models/postModel')
 
 // @desc    Get all posts (public)
@@ -9,6 +8,7 @@ const getAllPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({})
     .populate('user', 'name email') // Include user info (name and email only)
     .sort({ createdAt: -1 }) // Sort by newest first
+    .lean(); // Use lean() for better performance (returns plain JS objects)
 
   res.status(200).json(posts)
 })
@@ -26,15 +26,14 @@ const getPosts = asyncHandler(async (req, res) => {
 // @route   POST /api/posts
 // @access  Private
 const createPost = asyncHandler(async (req, res) => {
-  const {title, description} = req.body
-  if (!title || !description) {
+  const { content } = req.body
+  if (!content || !content.trim()) {
     res.status(400)
     throw new Error('Please fill in all the fields')
   }
 
   const post = await Post.create({
-    title: req.body.title,
-    description: req.body.description,
+    content: req.body.content,
     user: req.user.id
   })
 
@@ -94,13 +93,13 @@ const deletePost = asyncHandler(async (req, res) => {
     throw new Error('User not authorized')
   }
 
-  await post.remove()
+  await Post.findByIdAndDelete(req.params.id)
 
   res.status(200).json({ id: req.params.id })
 })
 
 module.exports = { 
-  getAllPosts, // Add this new function
+  getAllPosts,
   getPosts, 
   createPost, 
   updatePost, 
