@@ -18,7 +18,8 @@ const getAllPosts = asyncHandler(async (req, res) => {
 // @access  Private
 const getPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({ user: req.user.id })
-
+    .sort({ createdAt: -1 }) // Sort by newest first
+    .lean(); // Use lean() for better performance (returns plain JS objects)
   res.status(200).json(posts)
 })
 
@@ -98,10 +99,10 @@ const deletePost = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id })
 })
 
-module.exports = { 
+module.exports = {
   getAllPosts,
-  getPosts, 
-  createPost, 
-  updatePost, 
+  getPosts,
+  createPost,
+  updatePost,
   deletePost,
 }

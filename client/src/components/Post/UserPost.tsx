@@ -3,7 +3,6 @@ import { useAuthStore } from '../../features/auth/useAuthStore';
 import { usePostStore } from '../../features/posts/usePostStore';
 import { formatDistanceToNow } from 'date-fns';
 import { Trash, Edit, Plus, Heart, MessageCircle, MoreHorizontal, User } from 'lucide-react';
-import Spinner from '../../components/Spinner';
 import type { Post } from '../../features/posts/types';
 import { toast } from 'react-toastify';
 
@@ -87,10 +86,6 @@ const UserPost = () => {
     );
   }
 
-  if (isLoading) {
-    return <Spinner />
-  }
-
   return (
     <section className='user-profile'>
       <div className='user-profile-container max-w-2xl mx-auto p-4'>
@@ -98,7 +93,7 @@ const UserPost = () => {
         <div className="profile-header bg-white rounded-lg shadow-sm p-6 mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-dark rounded-full flex items-center justify-center">
                 <User className="text-white" size={24} />
               </div>
               <div>
@@ -128,7 +123,7 @@ const UserPost = () => {
                   <div className="p-4 border-b border-gray-100">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-dark rounded-full flex items-center justify-center">
                           <User className="text-white" size={16} />
                         </div>
                         <div>
