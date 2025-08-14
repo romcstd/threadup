@@ -27,7 +27,7 @@ export const usePostStore = create<PostState>((set) => ({
   message: '',
   actionType: null,
   
-  // Existing function - fetches user-specific posts
+  // fetches user-specific posts
   fetchPosts: async () => {
     try {
       set({ isLoading: true, isError: false, message: '' });
@@ -46,7 +46,7 @@ export const usePostStore = create<PostState>((set) => ({
     }
   },
 
-  // New function - fetches all posts without authentication
+  // fetches all posts without authentication
   fetchAllPosts: async () => {
     try {
       set({ isLoading: true, isError: false, message: '' });
@@ -70,9 +70,11 @@ export const usePostStore = create<PostState>((set) => ({
       const token = useAuthStore.getState().user?.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-      const response = await axios.post('/api/posts', postData, config);
-      set(state => ({
-        posts: [...state.posts, response.data],
+      await axios.post('/api/posts', postData, config);
+       // refetch all posts to get the complete list
+      await usePostStore.getState().fetchAllPosts();
+
+      set(({
         isLoading: false,
         isSuccess: true,
         actionType: 'create'
