@@ -18,8 +18,8 @@ const getAllPosts = asyncHandler(async (req, res) => {
 // @access  Private
 const getPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({ user: req.user.id })
-    .sort({ createdAt: -1 }) // Sort by newest first
-    .lean(); // Use lean() for better performance (returns plain JS objects)
+    .sort({ createdAt: -1 })
+    .lean();
   res.status(200).json(posts)
 })
 

@@ -2,14 +2,25 @@ import { create } from 'zustand';
 import axios from 'axios';
 const API_URL = '/api/users/';
 
+interface RegisterData {
+  name: string;
+  email: string;
+  password: string;
+}
+
+interface LoginData {
+  email: string;
+  password: string;
+}
+
 interface AuthState {
   user: any | null;
   isLoading: boolean;
   isError: boolean;
   isSuccess: boolean;
   message: string;
-  register: (userData: { name: string; email: string; password: string }) => Promise<void>;
-  login:    (userData: { email: string; password: string }) => Promise<void>;
+  register: (userData: RegisterData) => Promise<void>;
+  login:    (userData: LoginData) => Promise<void>;
   logout:   () => void;
   reset:    () => void;
 }
@@ -61,7 +72,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   logout: () => {
     // Remove user and update state
     localStorage.removeItem('user');
-    set({ user: null });
+    set({ user: null, isError: false, isSuccess: false, message: '' });
   },
   
   reset: () => {

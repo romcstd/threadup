@@ -1,8 +1,14 @@
 import React from 'react';
-import { MoreHorizontal, Heart, MessageCircle, Share, Bookmark } from 'lucide-react';
+import { MoreHorizontal, Heart, MessageCircle, Share } from 'lucide-react';
 import TimeStamp from '@/components/TimeStamp';
 import { getUserDisplayName, isUserPopulated } from '@/features/posts/postUtils';
 import type { Post } from '@/features/posts/types';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card"
 
 interface PostCardProps {
   post: Post;
@@ -10,25 +16,24 @@ interface PostCardProps {
   currentUserId?: string;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ 
-  post, 
+const PostCard: React.FC<PostCardProps> = ({
+  post,
   showActions = false,
-  currentUserId 
+  currentUserId
 }) => {
   const isOwner = currentUserId && (
-    typeof post.user === 'string' 
-      ? post.user === currentUserId 
+    typeof post.user === 'string'
+      ? post.user === currentUserId
       : post.user._id === currentUserId
   );
 
   return (
-    <article className="bg-white border border-gray-200 rounded-xl mb-4 overflow-hidden hover:border-gray-300 hover:shadow-md transition-all duration-200">
+    <Card className="p-0 gap-0">
       {/* Header */}
-      <header className="flex items-center justify-between p-4 pb-3">
+      <CardHeader className="flex items-center justify-between p-4 pb-3">
         <div className="flex items-center space-x-3">
-          {/* Avatar */}
-          <div className="w-10 h-10 rounded-full bg-dark flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-semibold text-sm">
+          <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center">
+            <span className="text-secondary font-semibold text-sm">
               {isUserPopulated(post.user) ? (
                 post.user.name ? post.user.name.charAt(0).toUpperCase() : 'U'
               ) : (
@@ -37,14 +42,13 @@ const PostCard: React.FC<PostCardProps> = ({
             </span>
           </div>
           
-          {/* Author info */}
-          <div className="flex flex-col">
-            <div className="font-semibold text-gray-900 text-sm leading-tight">
+          <div className="flex items-center space-x-2">
+            <div className="font-semibold text-primary text-sm leading-tight">
               {isUserPopulated(post.user) ? getUserDisplayName(post.user) : 'Unknown User'}
             </div>
-            <TimeStamp 
-              date={post.createdAt} 
-              className="text-xs text-gray-500 hover:text-blue-600 hover:underline cursor-pointer"
+            <TimeStamp
+              date={post.createdAt}
+              className="text-sm text-zinc-500 hover:underline cursor-pointer"
               showTooltip={true}
             />
           </div>
@@ -56,36 +60,32 @@ const PostCard: React.FC<PostCardProps> = ({
             <MoreHorizontal size={20} />
           </button>
         )}
-      </header>
+      </CardHeader>
 
       {/* Content */}
-      <div className="px-4 pb-3">
-        <p className="text-gray-800 text-sm leading-relaxed">{post.content}</p>
-      </div>
+      <CardContent className="pb-4 pt-1 px-4">
+        <p className="text-sm leading-relaxed whitespace-pre-wrap">{post.content}</p>
+      </CardContent>
 
-      {/* Footer with engagement buttons */}
-      <footer className="border-t border-gray-100 px-4 py-2">
+      <CardFooter className="border-t px-2 !py-2">
         <div className="flex items-center space-x-1">
-          <button className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-gray-50 text-gray-600 hover:text-red-500 transition-colors">
+          <button className="flex items-center space-x-2 px-3 py-2 rounded-md text-gray-600 hover:text-red-500 transition-colors">
             <Heart size={18} />
-            <span className="text-sm font-medium">12</span>
+            <span className="text-zinc-500 text-sm font-medium">Like</span>
           </button>
-          
-          <button className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-gray-50 text-gray-600 hover:text-blue-500 transition-colors">
+
+          <button className="flex items-center space-x-2 px-3 py-2 rounded-md text-gray-600 hover:text-blue-500 transition-colors">
             <MessageCircle size={18} />
-            <span className="text-sm font-medium">3</span>
+            <span className="text-zinc-500 text-sm font-medium">Comment</span>
           </button>
-          
-          <button className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-gray-50 text-gray-600 hover:text-green-500 transition-colors">
+
+          <button className="flex items-center space-x-2 px-3 py-2 rounded-md text-gray-600 hover:text-green-500 transition-colors ml-auto">
             <Share size={18} />
-          </button>
-          
-          <button className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-gray-50 text-gray-600 hover:text-yellow-500 transition-colors ml-auto">
-            <Bookmark size={18} />
+            <span className="text-zinc-500 text-sm font-medium">Share</span>
           </button>
         </div>
-      </footer>
-    </article>
+      </CardFooter>
+    </Card>
   );
 };
 
