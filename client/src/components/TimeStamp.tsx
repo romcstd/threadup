@@ -39,7 +39,7 @@ const TimeStamp: React.FC<TimeStampProps> = ({
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-    hour: '2-digit',
+    hour: 'numeric',
     minute: '2-digit',
     hour12: true
   });
