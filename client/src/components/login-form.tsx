@@ -15,7 +15,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Logo from '@/assets/logo/logo-with-text.png';
-// import DarkLogo from '@/assets/logo/dark-logo-with-text.png';
+import DarkLogo from '@/assets/logo/dark-logo-with-text.png';
+import { useThemeStore } from "@/features/useThemeStore";
 
 interface FormData {
     email: string;
@@ -42,6 +43,8 @@ export function LoginForm({
     const message = useAuthStore((state) => state.message);
     const login = useAuthStore((state) => state.login);
     const reset = useAuthStore((state) => state.reset);
+
+    const theme = useThemeStore((state) => state.theme);
 
     useEffect(() => {
         if (isError) {
@@ -77,7 +80,7 @@ export function LoginForm({
                 <CardHeader className="text-center">
                     <div className="flex justify-center mb-4">
                         <Link to="/">
-                            <img src={Logo} alt="Logo" className="w-48" />
+                            <img src={theme === "light" ? Logo : DarkLogo} alt="Logo" className="w-48" />
                         </Link>
                     </div>
                     <CardTitle>Login to your account</CardTitle>

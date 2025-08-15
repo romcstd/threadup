@@ -27,12 +27,6 @@ const AllPosts = () => {
 
   return (
     <section className="max-w-2xl mx-auto px-4 py-6">
-      {/* Header */}
-      {/* <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Community Posts</h1>
-        <p className="text-gray-600">Discover what everyone is sharing</p>
-      </div> */}
-      
       {posts.length > 0 && (
         <div className="space-y-4">
           {posts.map((post: Post) => (
