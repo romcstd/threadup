@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import axios from 'axios';
 import type { Post } from './types';
 import { useAuthStore } from '../auth/useAuthStore';
+const API_URL = import.meta.env.VITE_API_URL + '/api/posts/';
 
 interface PostState {
   posts: Post[];
@@ -35,7 +36,7 @@ export const usePostStore = create<PostState>((set) => ({
       const token = useAuthStore.getState().user?.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-      const response = await axios.get('/api/posts', config);
+      const response = await axios.get(API_URL, config);
       set({ posts: response.data, isLoading: false });
     } catch (error: any) {
       set({
@@ -52,7 +53,7 @@ export const usePostStore = create<PostState>((set) => ({
       set({ isLoading: true, isError: false, message: '' });
 
       // No authentication headers needed for public posts
-      const response = await axios.get('/api/posts/all');
+      const response = await axios.get(API_URL + "all");
       set({ posts: response.data, isLoading: false });
     } catch (error: any) {
       set({
@@ -70,7 +71,7 @@ export const usePostStore = create<PostState>((set) => ({
       const token = useAuthStore.getState().user?.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-      await axios.post('/api/posts', postData, config);
+      await axios.post(API_URL, postData, config);
        // refetch all posts to get the complete list
       await usePostStore.getState().fetchAllPosts();
 
@@ -95,7 +96,7 @@ export const usePostStore = create<PostState>((set) => ({
       const token = useAuthStore.getState().user?.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-      const response = await axios.put(`/api/posts/${id}`, postData, config);
+      const response = await axios.put(API_URL + id, postData, config);
       set(state => ({
         posts: state.posts.map(p => (p._id === id ? response.data : p)),
         isLoading: false,
@@ -117,7 +118,7 @@ export const usePostStore = create<PostState>((set) => ({
       const token = useAuthStore.getState().user?.token;
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-      await axios.delete(`/api/posts/${id}`, config);
+      await axios.delete(API_URL + id, config);
       set(state => ({
         posts: state.posts.filter(p => p._id !== id),
         isLoading: false,
