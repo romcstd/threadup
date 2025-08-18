@@ -17,7 +17,7 @@ connectDB();
 app.use(cors({
   origin: [
     'http://localhost:5137',               // Vite dev server
-    'https://threadup-app.vercel.app/',   // Vercel frontend
+    'https://threadup-app.vercel.app',   // Vercel frontend
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true, // allows sending cookies / auth headers
