@@ -8,7 +8,6 @@
     "server": "cd server && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "docker:dev": "docker-compose -f docker-compose.dev.yml up --build",
-    "docker:start": "npm run docker:dev && start http://localhost:5137 && start http://localhost:5000",
     "docker:prod": "docker-compose -f docker-compose.prod.yml up --build -d"
   },
   "devDependencies": {
