@@ -38,24 +38,24 @@ export const SideBar = () => {
 
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <a
-                                        href="/profile"
+                                    <Link
+                                        to="/profile"
                                         className="hover:text-black dark:hover:text-white"
                                     >
                                         <User size={24} />
-                                    </a>
+                                    </Link>
                                 </TooltipTrigger>
                                 <TooltipContent side="right">Profile</TooltipContent>
                             </Tooltip>
 
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <a
-                                        href="/create"
+                                    <Link
+                                        to="/create"
                                         className="hover:text-black dark:hover:text-white"
                                     >
                                         <PlusSquare size={24} />
-                                    </a>
+                                    </Link>
                                 </TooltipTrigger>
                                 <TooltipContent side="right">Create Post</TooltipContent>
                             </Tooltip>
