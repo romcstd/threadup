@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { LogOut, User, PlusSquare } from "lucide-react";
+import { LogOut, User } from "lucide-react";
 import Logo from '@/assets/logo/logo.png';
 import DarkLogo from '@/assets/logo/dark-logo.png';
 import { useAuthStore } from "@/features/auth/useAuthStore"; // your Zustand auth store
@@ -48,7 +48,7 @@ export const SideBar = () => {
                                 <TooltipContent side="right">Profile</TooltipContent>
                             </Tooltip>
 
-                            <Tooltip>
+                            {/* <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Link
                                         to="/create"
@@ -58,7 +58,7 @@ export const SideBar = () => {
                                     </Link>
                                 </TooltipTrigger>
                                 <TooltipContent side="right">Create Post</TooltipContent>
-                            </Tooltip>
+                            </Tooltip> */}
                         </nav>
                     }
                 </div>

@@ -79,7 +79,7 @@ const PostCard: React.FC<PostCardProps> = ({
             <span className="text-zinc-500 text-sm font-medium">Comment</span>
           </button>
 
-          <button className="flex items-center space-x-2 px-3 py-2 rounded-md text-gray-600 hover:text-green-500 transition-colors ml-auto">
+          <button className="flex items-center space-x-2 px-3 py-2 rounded-md text-gray-600 hover:text-green-500 transition-colors">
             <Share size={18} />
             <span className="text-zinc-500 text-sm font-medium">Share</span>
           </button>
