@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "threadup-client",
   "private": true,
-  "version": "2.4",
+  "version": "2.6",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -36,15 +36,15 @@ export function LoginForm({
     const { email, password } = formData;
     const navigate = useNavigate();
 
-    const user = useAuthStore((state) => state.user);
-    const isLoading = useAuthStore((state) => state.isLoading);
-    const isError = useAuthStore((state) => state.isError);
-    const isSuccess = useAuthStore((state) => state.isSuccess);
-    const message = useAuthStore((state) => state.message);
-    const login = useAuthStore((state) => state.login);
-    const reset = useAuthStore((state) => state.reset);
+    const user = useAuthStore(state => state.user);
+    const isLoading = useAuthStore(state => state.isLoading);
+    const isError = useAuthStore(state => state.isError);
+    const isSuccess = useAuthStore(state => state.isSuccess);
+    const message = useAuthStore(state => state.message);
+    const login = useAuthStore(state => state.login);
+    const reset = useAuthStore(state => state.reset);
 
-    const theme = useThemeStore((state) => state.theme);
+    const theme = useThemeStore(state => state.theme);
 
     useEffect(() => {
         if (isError) {

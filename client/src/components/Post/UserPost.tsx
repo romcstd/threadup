@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../features/auth/useAuthStore';
 import { usePostStore } from '../../features/posts/usePostStore';
 import TimeStamp from '@/components/TimeStamp';
@@ -17,6 +18,8 @@ const UserPost = () => {
   const [editingPost, setEditingPost] = useState<string | null>(null);
   const [editContent, setEditContent] = useState('');
 
+  const navigate = useNavigate();
+
   const userAuth = useAuthStore(state => state.user);
 
   const posts = usePostStore(state => state.posts);
@@ -31,14 +34,17 @@ const UserPost = () => {
   const actionType = usePostStore(state => state.actionType);
 
   useEffect(() => {
-    if (userAuth) {
-      fetchPosts(); // Fetch user's own posts
+
+    if (!userAuth) {
+      navigate('/login'); // redirect to login page
+    } else {
+      fetchPosts();
     }
 
     return () => {
       resetPosts();
     }
-  }, [userAuth, fetchPosts, resetPosts]);
+  }, [userAuth, fetchPosts, navigate, resetPosts]);
 
   useEffect(() => {
     if (isSuccess && (actionType === 'delete' || actionType === 'update')) {

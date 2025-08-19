@@ -17,7 +17,6 @@ services:
       - /app/server/node_modules
     environment:
       - NODE_ENV=development
-      - MONGO_URL=mongodb://mongo:27017/thread
     ports:
       - '5000:5000'
     command: npm run dev
