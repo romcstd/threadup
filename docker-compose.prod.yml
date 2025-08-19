@@ -14,7 +14,6 @@ services:
     container_name: thread-app
     environment:
       - NODE_ENV=production
-      - MONGO_URL=mongodb://mongo:27017/thread
     ports:
       - '5000:5000'
     depends_on:

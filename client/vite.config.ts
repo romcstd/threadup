@@ -19,7 +19,7 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5137, // Vite frontend will run on localhost:3000
-    open: true, // Auto-open browser on server start
+    open: false, // Auto-open browser on server start
     watch: {
       usePolling: true  // <-- Enable polling to detect file changes inside Docker
     },
