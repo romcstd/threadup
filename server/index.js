@@ -30,6 +30,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// ✅ Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 // API routes
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
