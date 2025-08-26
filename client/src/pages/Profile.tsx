@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useAuthStore } from "@/features/auth/useAuthStore";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
 import OwnProfile from '@/components/User/OwnProfile';
 import UserProfile from '@/components/User/UserProfile';
 export const Profile = () => {

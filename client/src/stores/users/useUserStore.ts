@@ -1,10 +1,9 @@
 import { create } from "zustand";
 import axios from "axios";
-import { useAuthStore } from "../auth/useAuthStore";
+import { getAuthHeaders } from "@/utils/getAuthHeaders";
 
 const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL + "/api/users",
-  withCredentials: true, // for refresh cookies
 });
 
 interface UserState {
@@ -16,20 +15,6 @@ interface UserState {
   getProfileByUsername: (username: string) => Promise<any | null>;
   reset: () => void;
 }
-
-// Helper to get headers with a valid token
-const getAuthHeaders = async () => {
-  const authUser = useAuthStore.getState().user;
-  let token = authUser?.accessToken;
-
-  // Refresh if no token or expired (assume refresh handles expiry)
-  if (!token) {
-    const refreshed = await useAuthStore.getState().refresh();
-    token = refreshed?.accessToken;
-  }
-
-  return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-};
 
 export const useUserStore = create<UserState>((set) => ({
   profile: null,

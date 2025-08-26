@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import type { Post } from "./types";
-import { useAuthStore } from "../auth/useAuthStore";
+import { getAuthHeaders } from "@/utils/getAuthHeaders";
 const API_URL = import.meta.env.VITE_API_URL + "/api/posts/";
 
 interface PostState {
@@ -11,29 +11,14 @@ interface PostState {
   isSuccess: boolean;
   message: string;
   actionType: "create" | "delete" | "update" | null;
-  fetchPosts: () => Promise<void>; // Fetch user's own posts
-  fetchAllPosts: () => Promise<void>; // Fetch all posts (public)
+  fetchPosts: () => Promise<void>;
+  fetchAllPosts: () => Promise<void>;
   getPostsByUsername: (username: string) => Promise<any | null>;
   createPost: (postData: { content: string }) => Promise<void>;
   updatePost: (id: string, postData: { content: string }) => Promise<void>;
   deletePost: (id: string) => Promise<void>;
   reset: () => void;
 }
-
-// Helper to get headers with a valid token
-const getAuthHeaders = async () => {
-  let token = useAuthStore.getState().user?.accessToken;
-
-  // Refresh if no token or expired (assume refresh handles expiry)
-  if (!token) {
-    const refreshed = await useAuthStore.getState().refresh();
-    token = refreshed?.accessToken;
-  }
-
-  if (!token) throw new Error("User not authenticated");
-
-  return { headers: { Authorization: `Bearer ${token}` } };
-};
 
 // Create the posts store hook
 export const usePostStore = create<PostState>((set) => ({
@@ -48,10 +33,7 @@ export const usePostStore = create<PostState>((set) => ({
   fetchPosts: async () => {
     try {
       set({ isLoading: true, isError: false, message: "" });
-
-      // Get auth headers for creating a post
       const headers = await getAuthHeaders();
-
       const response = await axios.get(API_URL, headers);
       set({ posts: response.data, isLoading: false });
     } catch (error: any) {
@@ -67,8 +49,6 @@ export const usePostStore = create<PostState>((set) => ({
   fetchAllPosts: async () => {
     try {
       set({ isLoading: true, isError: false, message: "" });
-
-      // No authentication headers needed for public posts
       const response = await axios.get(API_URL + "all");
       set({ posts: response.data, isLoading: false });
     } catch (error: any) {
@@ -97,14 +77,9 @@ export const usePostStore = create<PostState>((set) => ({
   createPost: async (postData) => {
     try {
       set({ isLoading: true, isError: false, message: "", actionType: null });
-
-      // Get auth headers for creating a post
       const headers = await getAuthHeaders();
-
       await axios.post(API_URL, postData, headers);
-      // refetch all posts to get the complete list
       await usePostStore.getState().fetchAllPosts();
-
       set({
         isLoading: false,
         isSuccess: true,
@@ -122,10 +97,7 @@ export const usePostStore = create<PostState>((set) => ({
   updatePost: async (id, postData) => {
     try {
       set({ isLoading: true, isError: false, message: "" });
-
-      // Get auth headers for creating a post
       const headers = await getAuthHeaders();
-
       const response = await axios.put(API_URL + id, postData, headers);
       set((state) => ({
         posts: state.posts.map((p) => (p._id === id ? response.data : p)),
@@ -144,10 +116,7 @@ export const usePostStore = create<PostState>((set) => ({
   deletePost: async (id) => {
     try {
       set({ isLoading: true, isError: false, message: "", actionType: null });
-
-      // Get auth headers for creating a post
       const headers = await getAuthHeaders();
-
       await axios.delete(API_URL + id, headers);
       set((state) => ({
         posts: state.posts.filter((p) => p._id !== id),

@@ -2,8 +2,8 @@ import { useState, useEffect, type ChangeEvent, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Spinner from './Spinner';
-import { useAuthStore } from '@/features/auth/useAuthStore';
-import { cn } from '@/lib/utils';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
+import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -16,24 +16,28 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Logo from '@/assets/logo/logo-with-text.png';
 import DarkLogo from '@/assets/logo/dark-logo-with-text.png';
-import { useThemeStore } from "@/features/useThemeStore";
+import { useThemeStore } from "@/stores/useThemeStore";
 
 interface FormData {
+    name: string;
     email: string;
     password: string;
+    confirmPassword: string;
 }
 
-export function LoginForm({
+export function RegisterForm({
     className,
     ...props
 }: React.ComponentProps<"div">) {
 
     const [formData, setFormData] = useState<FormData>({
+        name: '',
         email: '',
         password: '',
+        confirmPassword: '',
     });
 
-    const { email, password } = formData;
+    const { name, email, password, confirmPassword } = formData;
     const navigate = useNavigate();
 
     const user = useAuthStore(state => state.user);
@@ -41,9 +45,9 @@ export function LoginForm({
     const isError = useAuthStore(state => state.isError);
     const isSuccess = useAuthStore(state => state.isSuccess);
     const message = useAuthStore(state => state.message);
-    const login = useAuthStore(state => state.login);
+    const register = useAuthStore(state => state.register);
     const reset = useAuthStore(state => state.reset);
-
+    
     const theme = useThemeStore(state => state.theme);
 
     useEffect(() => {
@@ -67,7 +71,10 @@ export function LoginForm({
 
     const formOnSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        await login({ email, password });
+        if (password !== confirmPassword) {
+            return toast.error('Passwords do not match');
+        }
+        await register({ name, email, password });
     };
 
     if (isLoading) {
@@ -83,14 +90,24 @@ export function LoginForm({
                             <img src={theme === "light" ? Logo : DarkLogo} alt="Logo" className="w-48" />
                         </Link>
                     </div>
-                    <CardTitle>Login to your account</CardTitle>
-                    <CardDescription>
-                        Enter your email below to login to your account
-                    </CardDescription>
+                    <CardTitle>Create an account</CardTitle>
+                    <CardDescription>Enter your email below to create your account</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={formOnSubmit}>
                         <div className="flex flex-col gap-6">
+                            <div className="grid gap-3">
+                                <Label htmlFor="name">Name</Label>
+                                <Input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    required
+                                    autoComplete="name"
+                                    value={name}
+                                    onChange={formOnChange}
+                                />
+                            </div>
                             <div className="grid gap-3">
                                 <Label htmlFor="email">Email</Label>
                                 <Input
@@ -107,12 +124,6 @@ export function LoginForm({
                             <div className="grid gap-3">
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Password</Label>
-                                    <a
-                                        href="#"
-                                        className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                                    >
-                                        Forgot your password?
-                                    </a>
                                 </div>
                                 <Input
                                     id="password"
@@ -124,16 +135,30 @@ export function LoginForm({
                                     onChange={formOnChange}
                                 />
                             </div>
+                            <div className="grid gap-3">
+                                <div className="flex items-center">
+                                    <Label htmlFor="confirmPassword">Confirm Password</Label>
+                                </div>
+                                <Input
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    type="password"
+                                    required
+                                    autoComplete="confirm-password"
+                                    value={confirmPassword}
+                                    onChange={formOnChange}
+                                />
+                            </div>
                             <div className="flex flex-col gap-3">
                                 <Button type="submit" className="w-full">
-                                    Log In
+                                    Sign Up
                                 </Button>
                             </div>
                         </div>
                         <div className="mt-4 text-center text-sm">
-                            Don&apos;t have an account?{" "}
-                            <Link to="/register" className="underline underline-offset-4">
-                                Sign up
+                            Already have an account?{" "}
+                            <Link to="/login" className="underline underline-offset-4">
+                                Login
                             </Link>
                         </div>
                     </form>

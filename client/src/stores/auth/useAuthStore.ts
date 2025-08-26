@@ -21,14 +21,13 @@ interface AuthState {
   message: string;
   register: (userData: RegisterData) => Promise<void>;
   login: (userData: LoginData) => Promise<void>;
-  refresh: () => Promise<any | null>;
   logout: () => void;
   reset: () => void;
 }
 
 // Create the auth store hook
 export const useAuthStore = create<AuthState>((set) => ({
-  user: JSON.parse(localStorage.getItem("user") || "null"), // load from storage
+  user: JSON.parse(localStorage.getItem("user") || "null"),
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -37,7 +36,6 @@ export const useAuthStore = create<AuthState>((set) => ({
   register: async (userData) => {
     try {
       set({ isLoading: true });
-      // Call your registration API (replace URL with your endpoint)
       const response = await axios.post(API_URL + "register", userData);
       const newUser = response.data;
       // On success, store user and update state
@@ -70,30 +68,9 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  refresh: async () => {
-    try {
-      const response = await axios.post(API_URL + 'refresh', {}, { withCredentials: true });
-      const refreshedUser = response.data;
-      localStorage.setItem('user', JSON.stringify(refreshedUser));
-      set({ user: refreshedUser });
-      return refreshedUser;
-    } catch (error) {
-      console.error("Token refresh failed:", error);
-      set({ user: null });
-      localStorage.removeItem('user');
-      return null;
-    }
-  },
-
-  logout: async () => {
-    try {
-      await axios.post(API_URL + "logout", {}, { withCredentials: true });
-    } catch (error) {
-      console.error("Logout failed:", error);
-    } finally {
-      localStorage.removeItem("user");
-      set({ user: null, isError: false, isSuccess: false, message: "" });
-    }
+  logout: () => {
+    localStorage.removeItem("user");
+    set({ user: null, isError: false, isSuccess: false, message: "" });
   },
 
   reset: () => {
