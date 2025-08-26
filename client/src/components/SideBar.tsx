@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import { LogOut, User } from "lucide-react";
 import Logo from '@/assets/logo/logo.png';
 import DarkLogo from '@/assets/logo/dark-logo.png';
-import { useAuthStore } from "@/features/auth/useAuthStore"; // your Zustand auth store
+import { useAuthStore } from "@/stores/auth/useAuthStore"; // your Zustand auth store
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { useThemeStore } from "@/features/useThemeStore";
+import { useThemeStore } from "@/stores/useThemeStore";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const SideBar = () => {

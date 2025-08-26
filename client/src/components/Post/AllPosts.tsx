@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { usePostStore } from '@/features/posts/usePostStore';
+import { usePostStore } from '@/stores/posts/usePostStore';
 import PostCard from '@/components/Post/PostCard';
 import PostCardSkeleton from "@/components/Post/PostCardSkeleton";
-import type { Post } from '@/features/posts/types';
+import type { Post } from '@/stores/posts/types';
 import { toast } from 'react-toastify';
 
 const AllPosts = () => {

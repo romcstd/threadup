@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useUserStore } from '@/features/users/useUserStore';
-import { usePostStore } from '@/features/posts/usePostStore';
+import { useUserStore } from '@/stores/users/useUserStore';
+import { usePostStore } from '@/stores/posts/usePostStore';
 import UserPosts from './UserPosts';
 import { Card } from '@/components/ui/card';
 

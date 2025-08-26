@@ -1,16 +1,16 @@
 import { useState, useEffect, type FormEvent } from 'react';
-import { usePostStore } from '@/features/posts/usePostStore';
-import { useAuthStore } from '@/features/auth/useAuthStore'
+import { usePostStore } from '@/stores/posts/usePostStore';
+import { useAuthStore } from '@/stores/auth/useAuthStore'
 import { toast } from 'react-toastify';
 import { Button } from '@/components/ui/button';
-import { isUserPopulated } from '@/features/posts/postUtils';
+import { isUserPopulated } from '@/stores/posts/postUtils';
 import { Plus } from 'lucide-react';
 import {
   Card,
   CardHeader,
   CardContent,
   CardFooter,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 const CreatePostForm = () => {
   const [content, setContent] = useState('');

@@ -7,9 +7,9 @@ const User = require('../models/userModel');
 // @access  Public
 const getAllPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({})
-    .populate('user', 'name username') // Include user info (name and email only)
-    .sort({ createdAt: -1 }) // Sort by newest first
-    .lean(); // Use lean() for better performance (returns plain JS objects)
+    .populate('user', 'name username email')
+    .sort({ createdAt: -1 })
+    .lean();
 
   res.status(200).json(posts)
 })

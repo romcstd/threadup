@@ -1,14 +1,14 @@
 import React from 'react';
 import { MoreHorizontal, Heart, MessageCircle, Share } from 'lucide-react';
 import TimeStamp from '@/components/TimeStamp';
-import { getUserDisplayName, isUserPopulated } from '@/features/posts/postUtils';
-import type { Post } from '@/features/posts/types';
+import { getUserDisplayName, isUserPopulated } from '@/stores/posts/postUtils';
+import type { Post } from '@/stores/posts/types';
 import {
   Card,
   CardHeader,
   CardContent,
   CardFooter,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
 interface PostCardProps {
   post: Post;

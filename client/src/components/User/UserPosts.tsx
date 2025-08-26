@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
 import { Trash, Edit, Plus, Heart, MessageCircle, Share, MoreHorizontal, User } from 'lucide-react';
 import TimeStamp from '@/components/TimeStamp';
-import type { Post } from '@/features/posts/types';
+import type { Post } from '@/stores/posts/types';
 import { Button } from '@/components/ui/button';
 
 interface UserPostsProps {
