@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../../features/auth/useAuthStore';
-import { usePostStore } from '../../features/posts/usePostStore';
+import { useAuthStore } from '@/stores/auth/useAuthStore';
+import { usePostStore } from '@/stores/posts/usePostStore';
 import TimeStamp from '@/components/TimeStamp';
 import { Trash, Edit, Plus, Heart, MessageCircle, Share, MoreHorizontal, User } from 'lucide-react';
-import type { Post } from '../../features/posts/types';
+import type { Post } from '@/stores/posts/types';
 import { toast } from 'react-toastify';
 import { Button } from '@/components/ui/button';
 import {

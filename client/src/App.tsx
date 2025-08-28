@@ -2,10 +2,10 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { SideBar } from './components/side-bar';
+import { SideBar } from './components/SideBar';
 import { Home, Login, Register, Profile } from './pages';
 import { useEffect } from "react";
-import { useThemeStore } from "@/features/useThemeStore"
+import { useThemeStore } from "@/stores/useThemeStore"
 
 function App() {
   
@@ -36,7 +36,7 @@ function MainLayout() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/:username" element={<Profile />} />
         </Routes>
       </main>
     </div>

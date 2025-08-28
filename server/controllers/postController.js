@@ -1,23 +1,40 @@
 const asyncHandler = require('express-async-handler')
 const Post = require('../models/postModel')
+const User = require('../models/userModel');
 
 // @desc    Get all posts (public)
 // @route   GET /api/posts/all
 // @access  Public
 const getAllPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({})
-    .populate('user', 'name email') // Include user info (name and email only)
-    .sort({ createdAt: -1 }) // Sort by newest first
-    .lean(); // Use lean() for better performance (returns plain JS objects)
+    .populate('user', 'name username email')
+    .sort({ createdAt: -1 })
+    .lean();
 
   res.status(200).json(posts)
 })
+
+const getPostsByUsername = asyncHandler(async (req, res) => {
+  const user = await User.findOne({ username: req.params.username });
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  const posts = await Post.find({ user: user._id })
+    .populate('user', 'name username')
+    .sort({ createdAt: -1 })
+    .lean();
+
+  res.status(200).json(posts);
+});
 
 // @desc    Get user's posts
 // @route   GET /api/posts
 // @access  Private
 const getPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({ user: req.user.id })
+    .populate('user', 'name username')
     .sort({ createdAt: -1 })
     .lean();
   res.status(200).json(posts)
@@ -101,6 +118,7 @@ const deletePost = asyncHandler(async (req, res) => {
 
 module.exports = {
   getAllPosts,
+  getPostsByUsername,
   getPosts,
   createPost,
   updatePost,

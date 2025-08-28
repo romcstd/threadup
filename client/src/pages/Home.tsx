@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAuthStore } from '../features/auth/useAuthStore';
+import { useAuthStore } from '../stores/auth/useAuthStore';
 import AuthIntro from '@/components/AuthIntro';
 import CreatePostForm from '@/components/Post/CreatePostForm';
 import AllPosts from '@/components/Post/AllPosts';

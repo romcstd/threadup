@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { LogOut, User } from "lucide-react";
 import Logo from '@/assets/logo/logo.png';
 import DarkLogo from '@/assets/logo/dark-logo.png';
-import { useAuthStore } from "@/features/auth/useAuthStore"; // your Zustand auth store
+import { useAuthStore } from "@/stores/auth/useAuthStore"; // your Zustand auth store
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { useThemeStore } from "@/features/useThemeStore";
+import { useThemeStore } from "@/stores/useThemeStore";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const SideBar = () => {
-    const user = useAuthStore(state => state.user);
+    const authUser = useAuthStore(state => state.user);
     const logout = useAuthStore(state => state.logout);
     const reset = useAuthStore(state => state.reset);
     
@@ -33,13 +33,13 @@ export const SideBar = () => {
                         <img src={theme === "light" ? Logo : DarkLogo} alt="Logo" className="w-8" />
                     </Link>
 
-                    {user &&
+                    {authUser &&
                         <nav className="flex flex-col space-y-6 text-gray-600 dark:text-gray-300">
 
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Link
-                                        to="/profile"
+                                        to={`/${authUser.username}`}
                                         className="hover:text-black dark:hover:text-white"
                                     >
                                         <User size={24} />
@@ -76,7 +76,7 @@ export const SideBar = () => {
                     </Tooltip>
 
                     {/* Logout */}
-                    {user &&
+                    {authUser &&
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <button

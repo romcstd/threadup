@@ -6,6 +6,13 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add a name'],
     },
+    username: {
+      type: String,
+      required: [true, 'Please add a username'],
+      unique: true,
+      trim: true,
+      lowercase: true,
+    },
     email: {
       type: String,
       required: [true, 'Please add an email'],
@@ -15,6 +22,8 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add a password'],
     },
+    // store hashed refresh token for rotation/invalidation
+    refreshTokenHash: { type: String, default: null },
   },
   {
     timestamps: true,
