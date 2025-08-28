@@ -26,19 +26,15 @@ const protect = asyncHandler(async (req, res, next) => {
 
       return next()
     } catch (error) {
-      console.log(error)
-      res.status(401)
-      throw new Error('Not authorized, token failed or expired')
+      console.error("JWT Error:", error.name, error.message);
+      if (error.name === "TokenExpiredError") {
+        return res.status(401).json({ message: "jwt expired" });
+      }
+      return res.status(401).json({ message: "Not authorized, token failed" });
     }
   }
 
-  if (!token) {
-    res.status(401)
-    throw new Error('Not authorized, no token')
-  }
-
-  res.status(401)
-  throw new Error('Not authorized, no token')
+  return res.status(401).json({ message: "Not authorized, no token" });
 })
 
 module.exports = { protect }

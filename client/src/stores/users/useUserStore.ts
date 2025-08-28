@@ -1,10 +1,7 @@
 import { create } from "zustand";
-import axios from "axios";
-import { getAuthHeaders } from "@/utils/getAuthHeaders";
+import api from "@/utils/api";
 
-const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL + "/api/users",
-});
+const API_URL = "/users/";
 
 interface UserState {
   profile: any | null; // currently viewed profile
@@ -27,8 +24,7 @@ export const useUserStore = create<UserState>((set) => ({
   getProfileByUsername: async (username: string) => {
     set({ isLoading: true, isError: false, message: "" });
     try {
-      const headers = await getAuthHeaders();
-      const response = await API.get(`/${username}`, headers);
+      const response = await api.get(API_URL + username);
       set({ profile: response.data, isLoading: false });
       return response.data;
     } catch (error: any) {
