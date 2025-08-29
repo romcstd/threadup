@@ -29,8 +29,8 @@ const UserProfile = ({ username }: Props) => {
             <div className="user-profile-container max-w-2xl mx-auto p-4">
                 <Card className="p-6 mb-6 gap-2">
                     <div className="flex items-center space-x-4">
-                        <div className="w-16 h-16 bg-dark rounded-full flex items-center justify-center">
-                            <div className='text-2xl'>{profile?.name ? profile?.name.charAt(0).toUpperCase() : 'U'}</div>
+                        <div className="w-16 h-16 bg-foreground rounded-full flex items-center justify-center">
+                            <span className='text-secondary font-semibold text-2xl'>{profile?.name ? profile?.name.charAt(0).toUpperCase() : 'U'}</span>
                         </div>
                         <div>
                             <h1 className="text-2xl font-bold text-primary">{profile?.name}</h1>
