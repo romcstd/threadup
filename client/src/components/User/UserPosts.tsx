@@ -60,8 +60,8 @@ const UserPosts: FC<UserPostsProps> = ({ posts, isOwnProfile, onEdit, onDelete }
         <Card className="p-0 gap-0" key={post._id}>
           <CardHeader className="flex items-center justify-between p-4 pb-3">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-dark rounded-full flex items-center justify-center">
-                {isUserPopulated(post.user) ? post.user.name.charAt(0).toUpperCase() : 'U'}
+              <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center">
+                <span className="text-secondary font-semibold text-sm">{isUserPopulated(post.user) ? post.user.name.charAt(0).toUpperCase() : 'U'}</span>
               </div>
               <div>
                 <h3 className="font-semibold text-primary text-sm leading-tight">
