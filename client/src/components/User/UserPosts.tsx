@@ -1,20 +1,20 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
-import { Trash, Edit, Plus, Heart, MessageCircle, Share, MoreHorizontal, User } from 'lucide-react';
+import { Trash, Edit, Plus, Heart, MessageCircle, Share, MoreHorizontal } from 'lucide-react';
 import TimeStamp from '@/components/TimeStamp';
 import type { Post } from '@/stores/posts/types';
 import { Button } from '@/components/ui/button';
-
+import EmptyPost from '@/assets/post/empty-post.svg';
+import { getUserDisplayName, isUserPopulated } from '@/stores/posts/postUtils';
 interface UserPostsProps {
   posts: Post[];
   isOwnProfile: boolean;
-  user?: { name: string; username: string };
   onEdit?: (post: Post) => void;
   onDelete?: (postId: string) => void;
 }
 
-const UserPosts: FC<UserPostsProps> = ({ posts, isOwnProfile, user, onEdit, onDelete }) => {
+const UserPosts: FC<UserPostsProps> = ({ posts, isOwnProfile, onEdit, onDelete }) => {
   const [editingPost, setEditingPost] = useState<string | null>(null);
   const [editContent, setEditContent] = useState('');
 
@@ -33,17 +33,17 @@ const UserPosts: FC<UserPostsProps> = ({ posts, isOwnProfile, user, onEdit, onDe
     return (
       <Card>
         <CardContent className="text-center">
-          <div className="mb-6">
-            <div className="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-              <Plus className="text-zinc-400" size={32} />
-            </div>
+          <div className="mb-6 flex justify-center">
+            <img src={EmptyPost} alt="Empty Post" className="w-48" />
           </div>
-          <h3 className="text-xl font-medium text-zinc-600 mb-3">No posts yet</h3>
-          <p className="text-zinc-500 mb-8 max-w-md mx-auto">
-            {isOwnProfile
-              ? "You haven't created any posts yet. Share your thoughts!"
-              : "This user hasn't posted anything yet."}
-          </p>
+          <div className="text-center">
+            <h3 className="text-xl font-medium text-zinc-600 mb-3">No posts yet</h3>
+            <p className="text-zinc-500 mb-8 max-w-md mx-auto">
+              {isOwnProfile
+                ? "You haven't created any posts yet. Share your thoughts!"
+                : "This user hasn't posted anything yet."}
+            </p>
+          </div>
           {isOwnProfile && (
             <Button size="lg">
               <Plus /> Create Your First Post
@@ -61,12 +61,12 @@ const UserPosts: FC<UserPostsProps> = ({ posts, isOwnProfile, user, onEdit, onDe
           <CardHeader className="flex items-center justify-between p-4 pb-3">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-dark rounded-full flex items-center justify-center">
-                <User className="text-white" size={16} />
+                {isUserPopulated(post.user) ? post.user.name.charAt(0).toUpperCase() : 'U'}
               </div>
               <div>
                 <h3 className="font-semibold text-primary text-sm leading-tight">
-                  {typeof post.user === 'object' ? post.user.name : user?.name}
-                  
+                  {isUserPopulated(post.user) ? getUserDisplayName(post.user) : 'Unknown User'}
+
                 </h3>
                 <p className="text-sm text-zinc-500">
                   <TimeStamp date={post.createdAt} className="text-sm text-zinc-500" showTooltip />

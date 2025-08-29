@@ -3,9 +3,11 @@ import { useAuthStore } from '@/stores/auth/useAuthStore';
 import { usePostStore } from '@/stores/posts/usePostStore';
 import UserPosts from './UserPosts';
 import { Card } from '@/components/ui/card';
+import Spinner from '@/components/Spinner';
 
 const OwnProfile = () => {
     const user = useAuthStore(state => state.user);
+    const isLoading = usePostStore(state => state.isLoading);
     const posts = usePostStore(state => state.posts);
     const fetchPosts = usePostStore(state => state.fetchPosts);
     const deletePost = usePostStore(state => state.deletePost);
@@ -15,6 +17,12 @@ const OwnProfile = () => {
         fetchPosts();
         return () => resetPosts();
     }, [fetchPosts, resetPosts]);
+
+    if (isLoading) {
+        return <Spinner />;
+    }
+
+    console.log('isLoading', isLoading);
 
     return (
         <section className="user-profile">
@@ -27,7 +35,6 @@ const OwnProfile = () => {
                 <UserPosts
                     posts={posts}
                     isOwnProfile={true}
-                    user={user}
                     onDelete={deletePost}
                 />
             </div>
