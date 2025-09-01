@@ -27,12 +27,16 @@ const OwnProfile = () => {
     return (
         <section className="user-profile">
             <div className="user-profile-container max-w-2xl mx-auto p-4">
-                <Card className="p-6 mb-6">
-                    <div className="w-16 h-16 bg-foreground rounded-full flex items-center justify-center">
-                        <span className='text-secondary font-semibold text-2xl'>{user?.name ? user?.name.charAt(0).toUpperCase() : 'U'}</span>
+                <Card className="p-6 mb-6 gap-2">
+                    <div className="flex items-center space-x-4">
+                        <div className="w-16 h-16 bg-foreground rounded-full flex items-center justify-center">
+                            <span className='text-secondary font-semibold text-2xl'>{user?.name ? user?.name.charAt(0).toUpperCase() : 'U'}</span>
+                        </div>
+                        <div>
+                            <h1 className="text-2xl font-bold text-primary">{user?.name}</h1>
+                            <p className="text-primary">{user?.email}</p>
+                        </div>
                     </div>
-                    <h1 className="text-2xl font-bold text-primary">{user?.name}</h1>
-                    <p className="text-primary">{user?.email}</p>
                 </Card>
 
                 <UserPosts
