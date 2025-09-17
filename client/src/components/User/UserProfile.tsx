@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Navigate } from "react-router-dom";
 import { useUserStore } from '@/stores/users/useUserStore';
 import { usePostStore } from '@/stores/posts/usePostStore';
 import UserPosts from './UserPosts';
@@ -22,7 +23,9 @@ const UserProfile = ({ username }: Props) => {
         return <Spinner />;
     }
 
-    console.log('isLoading', isLoading);
+    if (!profile) {
+        return <Navigate to="/user-not-found" replace />;
+    }
 
     return (
         <section className="user-profile">
