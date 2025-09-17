@@ -1,7 +1,7 @@
 import { useState, useEffect, type ChangeEvent, type FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Spinner from '@/components/Spinner';
+import { Spinner } from '@/components/Spinner';
 import { useAuthStore } from '@/stores/auth/useAuthStore';
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button';
