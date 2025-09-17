@@ -4,7 +4,7 @@ import api from "@/utils/api";
 const API_URL = "/users/";
 
 interface UserState {
-  profile: any | null; // currently viewed profile
+  profile: any | null;
   isLoading: boolean;
   isError: boolean;
   isSuccess: boolean;
