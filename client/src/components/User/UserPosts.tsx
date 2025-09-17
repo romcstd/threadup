@@ -7,14 +7,17 @@ import type { Post } from '@/stores/posts/types';
 import { Button } from '@/components/ui/button';
 import EmptyPost from '@/assets/post/empty-post.svg';
 import { getUserDisplayName, isUserPopulated } from '@/stores/posts/postUtils';
+import { Spinner } from '@/components/Spinner';
+
 interface UserPostsProps {
   posts: Post[];
   isOwnProfile: boolean;
   onEdit?: (post: Post) => void;
   onDelete?: (postId: string) => void;
+  postLoading: boolean;
 }
 
-const UserPosts: FC<UserPostsProps> = ({ posts, isOwnProfile, onEdit, onDelete }) => {
+const UserPosts: FC<UserPostsProps> = ({ posts, isOwnProfile, onEdit, onDelete, postLoading }) => {
   const [editingPost, setEditingPost] = useState<string | null>(null);
   const [editContent, setEditContent] = useState('');
 
@@ -28,6 +31,8 @@ const UserPosts: FC<UserPostsProps> = ({ posts, isOwnProfile, onEdit, onDelete }
     setEditingPost(null);
     setEditContent('');
   };
+
+  if (postLoading) return <Spinner />;
 
   if (!posts || posts.length === 0) {
     return (

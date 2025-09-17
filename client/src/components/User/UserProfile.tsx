@@ -4,28 +4,24 @@ import { useUserStore } from '@/stores/users/useUserStore';
 import { usePostStore } from '@/stores/posts/usePostStore';
 import UserPosts from './UserPosts';
 import { Card } from '@/components/ui/card';
-import Spinner from '@/components/Spinner';
+import { Spinner } from '@/components/Spinner';
 
 interface Props {
     username: string;
 }
 
 const UserProfile = ({ username }: Props) => {
-    const { profile, getProfileByUsername } = useUserStore();
-    const { isLoading, posts, getPostsByUsername } = usePostStore();
+    const { isLoading: userLoading, isError: userError, reset: resetUser, profile, getProfileByUsername } = useUserStore();
+    const { isLoading: postLoading, posts, getPostsByUsername } = usePostStore();
 
     useEffect(() => {
+        resetUser();
         getProfileByUsername(username);
         getPostsByUsername(username);
-    }, [username, getProfileByUsername, getPostsByUsername]);
+    }, [username, getProfileByUsername, getPostsByUsername, resetUser]);
 
-    if (isLoading) {
-        return <Spinner />;
-    }
-
-    if (!profile) {
-        return <Navigate to="/user-not-found" replace />;
-    }
+    if (userLoading && postLoading) return <Spinner />;
+    if (userError && !profile) return <Navigate to="/user-not-found" replace />;
 
     return (
         <section className="user-profile">
@@ -42,7 +38,7 @@ const UserProfile = ({ username }: Props) => {
                     </div>
                 </Card>
 
-                <UserPosts posts={posts} isOwnProfile={false} />
+                <UserPosts posts={posts} isOwnProfile={false} postLoading={postLoading} />
             </div>
         </section>
     );
